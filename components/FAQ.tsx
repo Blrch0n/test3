@@ -124,18 +124,21 @@ export function SectionHeader({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="text-center max-w-3xl mx-auto mb-16"
+      className="text-center max-w-3xl mx-auto mb-20"
     >
       {eyebrow && (
-        <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-sm font-medium spectral-text mb-4 uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md border border-white/10 bg-white/[0.02] text-[11px] font-mono uppercase tracking-[0.2em] text-white/50 mb-6 backdrop-blur-sm">
+          <div className="w-1 h-1 rounded-full bg-[#5B5FFF]" />
           {eyebrow}
         </div>
       )}
-      <h2 className="text-3xl md:text-5xl font-bold mb-4">{title}</h2>
-      <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+      <h2 className="text-3xl md:text-5xl font-bold mb-5 tracking-tight">
+        {title}
+      </h2>
+      <p className="text-base md:text-lg text-white/55 leading-relaxed">
         {subtitle}
       </p>
     </motion.div>

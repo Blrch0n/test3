@@ -38,8 +38,8 @@ export default function Navigation() {
         transition={{ duration: 0.3 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
           isScrolled
-            ? "bg-[rgba(7,8,11,0.9)] backdrop-blur-2xl border-b border-white/8 shadow-lg"
-            : "bg-transparent border-b border-transparent"
+            ? "bg-[rgba(7,8,11,0.95)] backdrop-blur-2xl border-b border-white/8"
+            : "bg-transparent border-b border-white/5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -47,33 +47,34 @@ export default function Navigation() {
             {/* Logo with HUD accent */}
             <a
               href="#top"
-              className="flex items-center gap-2 text-lg font-semibold text-white hover:opacity-80 transition-opacity group"
+              className="flex items-center gap-2.5 text-base font-semibold text-white hover:opacity-80 transition-opacity group"
             >
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#00D4FF] to-[#5B5FFF] group-hover:animate-pulse" />
-              <span>Sys&CoTech</span>
+              <div className="w-1.5 h-1.5 rounded-full bg-[#5B5FFF] group-hover:shadow-[0_0_8px_rgba(91,95,255,0.8)] transition-shadow" />
+              <span className="tracking-tight">Sys&CoTech</span>
             </a>
 
-            {/* Desktop Nav Links */}
-            <ul className="hidden md:flex items-center gap-6">
+            {/* Desktop Nav Links - centered */}
+            <ul className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm font-medium text-white/60 hover:text-white transition-colors duration-200 relative group py-2"
+                    className="text-[13px] font-medium text-white/50 hover:text-white transition-colors duration-200 relative group py-2"
                   >
                     {link.label}
-                    <span className="absolute -bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-[#00D4FF] via-[#5B5FFF] to-[#E94FFF] group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-0 left-0 w-0 h-[1px] bg-gradient-to-r from-[#5B5FFF] to-[#00D4FF] group-hover:w-full transition-all duration-300" />
                   </a>
                 </li>
               ))}
             </ul>
 
-            {/* CTA Button */}
+            {/* CTA Button - updated to match ChainGPT style */}
             <a
               href="#contact"
-              className="hidden md:block px-5 py-2 rounded-xl bg-gradient-to-r from-[#00D4FF] via-[#5B5FFF] to-[#9B4FFF] text-white font-semibold text-sm hover:shadow-[0_0_30px_rgba(91,95,255,0.6)] hover:-translate-y-0.5 transition-all duration-200"
+              className="hidden md:flex items-center justify-center px-5 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white font-medium text-sm hover:border-[#5B5FFF]/40 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(91,95,255,0.2)] transition-all duration-200 relative overflow-hidden group"
             >
-              Join Us
+              <span className="relative z-10">Join Us</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00D4FF]/10 via-[#5B5FFF]/10 to-[#9B4FFF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
 
             {/* Mobile Menu Toggle */}

@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode, ButtonHTMLAttributes } from "react";
-import { motion } from "framer-motion";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary";
@@ -31,31 +30,21 @@ export function Button({
 
   if (href) {
     return (
-      <motion.a
-        href={href}
-        className={combinedClasses}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
+      <a href={href} className={combinedClasses}>
         {variant === "secondary" && (
           <div className="absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-[#00D4FF]/20 via-[#5B5FFF]/20 to-[#9B4FFF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         )}
         <span className="relative z-10">{children}</span>
-      </motion.a>
+      </a>
     );
   }
 
   return (
-    <motion.button
-      className={combinedClasses}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      {...props}
-    >
+    <button className={combinedClasses} {...props}>
       {variant === "secondary" && (
         <div className="absolute inset-0 rounded-2xl border border-transparent bg-gradient-to-r from-[#00D4FF]/20 via-[#5B5FFF]/20 to-[#9B4FFF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       )}
       <span className="relative z-10">{children}</span>
-    </motion.button>
+    </button>
   );
 }

@@ -11,48 +11,45 @@ import {
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 
-// Premium geometric model with animated "energy core" shader effect
 function GeometricModel() {
   const meshRef = useRef<THREE.Mesh>(null);
   const coreRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
+    const t = state.clock.elapsedTime;
+
     if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.08;
-      meshRef.current.position.y =
-        Math.sin(state.clock.elapsedTime * 0.6) * 0.12;
+      meshRef.current.rotation.y = t * 0.08;
+      meshRef.current.position.y = Math.sin(t * 0.6) * 0.12;
     }
+
     if (coreRef.current) {
-      coreRef.current.rotation.y = -state.clock.elapsedTime * 0.15;
-      // Pulsing emissive intensity
+      coreRef.current.rotation.y = -t * 0.15;
       const material = coreRef.current.material as THREE.MeshStandardMaterial;
-      material.emissiveIntensity =
-        0.4 + Math.sin(state.clock.elapsedTime * 2) * 0.2;
+      material.emissiveIntensity = 0.45 + Math.sin(t * 2) * 0.18;
     }
   });
 
   return (
     <>
-      {/* Main geometric shape */}
-      <mesh ref={meshRef} position={[0, 0, 0]}>
+      <mesh ref={meshRef}>
         <icosahedronGeometry args={[1.2, 1]} />
         <meshStandardMaterial
           color="#5B5FFF"
           metalness={0.95}
-          roughness={0.05}
+          roughness={0.06}
           envMapIntensity={2}
           emissive="#5B5FFF"
-          emissiveIntensity={0.3}
+          emissiveIntensity={0.25}
         />
       </mesh>
 
-      {/* Animated energy core */}
-      <mesh ref={coreRef} position={[0, 0, 0]}>
+      <mesh ref={coreRef}>
         <icosahedronGeometry args={[0.6, 0]} />
         <meshStandardMaterial
           color="#00D4FF"
           metalness={0.9}
-          roughness={0.1}
+          roughness={0.12}
           transparent
           opacity={0.9}
           emissive="#00D4FF"
@@ -60,7 +57,6 @@ function GeometricModel() {
         />
       </mesh>
 
-      {/* Outer ring */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
         <torusGeometry args={[1.8, 0.05, 16, 100]} />
         <meshStandardMaterial
@@ -68,16 +64,16 @@ function GeometricModel() {
           metalness={1}
           roughness={0}
           emissive="#E94FFF"
-          emissiveIntensity={0.6}
+          emissiveIntensity={0.55}
         />
       </mesh>
 
-      {/* Accent particles */}
-      {[...Array(12)].map((_, i) => {
+      {Array.from({ length: 12 }).map((_, i) => {
         const angle = (i / 12) * Math.PI * 2;
         const radius = 2.2;
-        const colors = ["#00D4FF", "#5B5FFF", "#9B4FFF"];
+        const colors = ["#00D4FF", "#5B5FFF", "#9B4FFF"] as const;
         const color = colors[i % colors.length];
+
         return (
           <mesh
             key={i}
@@ -91,7 +87,7 @@ function GeometricModel() {
             <meshStandardMaterial
               color={color}
               emissive={color}
-              emissiveIntensity={1.2}
+              emissiveIntensity={1.1}
             />
           </mesh>
         );
@@ -102,12 +98,11 @@ function GeometricModel() {
 
 function Model() {
   const groupRef = useRef<THREE.Group>(null);
-  const targetRotation = useRef({ x: 0, y: 0 });
-  const currentRotation = useRef({ x: 0, y: 0 });
+  const target = useRef({ x: 0, y: 0 });
+  const current = useRef({ x: 0, y: 0 });
 
-  // Mouse parallax
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const onMove = (e: MouseEvent) => {
       const container = document.getElementById("hero");
       if (!container) return;
 
@@ -115,32 +110,24 @@ function Model() {
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
-      targetRotation.current = {
-        x: y * 0.1,
-        y: x * 0.15,
-      };
+      target.current = { x: y * 0.1, y: x * 0.15 };
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
   useFrame((state) => {
+    const t = state.clock.elapsedTime;
+
     if (!groupRef.current) return;
 
-    // Smooth lerp for mouse parallax
-    currentRotation.current.x +=
-      (targetRotation.current.x - currentRotation.current.x) * 0.05;
-    currentRotation.current.y +=
-      (targetRotation.current.y - currentRotation.current.y) * 0.05;
+    current.current.x += (target.current.x - current.current.x) * 0.05;
+    current.current.y += (target.current.y - current.current.y) * 0.05;
 
-    groupRef.current.rotation.x = currentRotation.current.x;
-    groupRef.current.rotation.y =
-      currentRotation.current.y + state.clock.elapsedTime * 0.08;
-
-    // Idle float animation (breathing)
-    groupRef.current.position.y =
-      Math.sin(state.clock.elapsedTime * 0.6) * 0.12;
+    groupRef.current.rotation.x = current.current.x;
+    groupRef.current.rotation.y = current.current.y + t * 0.08;
+    groupRef.current.position.y = Math.sin(t * 0.6) * 0.12;
   });
 
   return (
@@ -154,31 +141,22 @@ function Scene({ onDprChange }: { onDprChange: (dpr: number) => void }) {
   const { camera } = useThree();
 
   useEffect(() => {
-    // Minimal scroll interaction
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const heroHeight = window.innerHeight;
-      const progress = Math.min(scrollY / heroHeight, 1);
-
-      if (camera && progress < 0.3) {
-        camera.position.y = progress * 0.2;
-      }
+    const onScroll = () => {
+      const progress = Math.min(window.scrollY / window.innerHeight, 1);
+      if (progress < 0.3) camera.position.y = progress * 0.2;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [camera]);
 
   return (
     <>
       <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={50} />
 
-      {/* Lighting setup optimized for rim lighting */}
       <ambientLight intensity={0.2} />
       <pointLight position={[10, 10, 10]} intensity={1.2} color="#00D4FF" />
       <pointLight position={[-10, -10, -10]} intensity={0.8} color="#E94FFF" />
-
-      {/* Rim/back light for neon edge effect */}
       <pointLight position={[0, 0, -5]} intensity={2} color="#5B5FFF" />
       <spotLight
         position={[0, 5, 0]}
@@ -191,18 +169,16 @@ function Scene({ onDprChange }: { onDprChange: (dpr: number) => void }) {
       <Model />
       <Environment preset="city" />
 
-      {/* Postprocessing effects */}
       <EffectComposer>
         <Bloom
-          intensity={0.6}
-          luminanceThreshold={0.3}
+          intensity={0.55}
+          luminanceThreshold={0.32}
           luminanceSmoothing={0.9}
           mipmapBlur
         />
-        <Vignette eskil={false} offset={0.1} darkness={0.5} />
+        <Vignette eskil={false} offset={0.12} darkness={0.5} />
       </EffectComposer>
 
-      {/* Performance monitoring - unified DPR state */}
       <PerformanceMonitor
         onIncline={() => onDprChange(2)}
         onDecline={() => onDprChange(1)}
@@ -216,8 +192,7 @@ export default function Scene3D() {
   const [dpr, setDpr] = useState(1.5);
 
   useEffect(() => {
-    // Cap DPR based on device
-    const maxDpr = Math.min(2, window.devicePixelRatio);
+    const maxDpr = Math.min(2, window.devicePixelRatio || 1);
     setDpr(window.innerWidth < 768 ? 1 : maxDpr);
   }, []);
 
@@ -231,7 +206,7 @@ export default function Scene3D() {
           powerPreference: "high-performance",
         }}
         shadows={false}
-        frameloop="always" // Changed to always for continuous animation
+        frameloop="always"
       >
         <Scene onDprChange={setDpr} />
       </Canvas>

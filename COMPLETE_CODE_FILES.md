@@ -1,26 +1,43 @@
 # Complete Code Files - Sys&CoTech Landing Page
 
 **Last Updated:** January 27, 2026  
-**Version:** V3 - ChainGPT-Inspired Refinements
+**Version:** V4 - ChainGPT Visual Language Complete Restyle
 
-## 🎯 Latest Updates (V3)
+## 🎯 Latest Updates (V4)
 
-### Critical Technical Fixes ✅
+### Major Visual Restyle - ChainGPT Aesthetic ✨
 
-- **Scene3D.tsx**: Removed robot.glb dependency, now uses premium GeometricModel
-  - Fixed: Invalid hooks usage (removed try/catch around useGLTF)
-  - Fixed: Unified DPR state management with onDprChange callback
-  - Fixed: Changed frameloop to "always" for continuous animation
-  - Enhanced: Animated energy core with pulsing emissive intensity
+Complete redesign to match ChainGPT's dark futuristic grid-based visual language while preserving all Sys&CoTech content.
 
 ### New Components 🆕
 
-- **HUDFrame.tsx**: Reusable corner bracket component (default & compact variants)
-- **Button.tsx**: Standardized button system (primary gradient & secondary glass variants)
+- **BackgroundGrid.tsx**: Full-page grid overlay with dual-layer pattern, radial mask, visible everywhere
+- **SectionFrame.tsx**: Modular panel wrapper with 1px dividers, corner brackets, and optional index column
+- **RightRail.tsx**: Vertical navigation rail with scroll-tracking dots, section labels, and MENU indicator
+- **HUDFrame.tsx**: Reusable corner bracket component (from V3)
+- **Button.tsx**: Standardized button system (from V3, updated with no framer-motion)
 
-### Dependencies ➕
+### Complete Component Updates 🔄
 
-- Added `react-error-boundary@^4.0.11` for error handling
+- **globals.css**: New design tokens (--border-line, --panel-bg, --text-mono), refined utilities
+- **layout.tsx**: Added BackgroundGrid and RightRail globally
+- **Navigation.tsx**: Thin 1px borders, centered links, glass panel CTA
+- **Hero.tsx**: Corner brackets on headline, minimal HUD frames, cleaner buttons
+- **Cards.tsx**: Corner brackets on all cards, glass morphism, reduced padding, subtle hover
+- **FAQ.tsx**: Updated SectionHeader with HUD-style labels
+- **page.tsx**: All sections wrapped in SectionFrame, increased spacing, reduced glow
+
+### Visual Design System ✅
+
+✓ Full-page grid overlay visible everywhere (not just hero)  
+✓ Modular framed panels with 1px dividers and corner brackets  
+✓ HUD micro-typography with monospace labels, increased letter spacing  
+✓ Thin 1px borders everywhere for technical precision  
+✓ Glass morphism with backdrop-blur and subtle inner glow  
+✓ Right-side rail with vertical dots, MENU label, scroll tracking  
+✓ Reduced glow intensity - more subtle accents  
+✓ Increased whitespace - more breathing room  
+✓ Corner brackets on hero headline, cards, and key UI elements
 
 ---
 
@@ -35,17 +52,20 @@ This document contains all the complete code files for the Sys&CoTech landing pa
    - [tsconfig.json](#tsconfigjson)
    - [next.config.ts](#nextconfigts)
 2. [App Files](#app-files)
-   - [app/layout.tsx](#applayouttsx)
-   - [app/page.tsx](#apppagetsx)
-   - [app/globals.css](#appglobalscss)
+   - [app/layout.tsx](#applayouttsx) ⭐ **Updated**
+   - [app/page.tsx](#apppagetsx) ⭐ **Updated**
+   - [app/globals.css](#appglobalscss) ⭐ **Updated**
 3. [Component Files](#component-files)
-   - [components/Navigation.tsx](#componentsnavigationtsx)
-   - [components/Hero.tsx](#componentsherotsx)
-   - [components/Scene3D.tsx](#componentsscene3dtsx) ⭐ **Updated**
-   - [components/Cards.tsx](#componentscardstsx)
-   - [components/FAQ.tsx](#componentsfaqtsx)
-   - [components/HUDFrame.tsx](#componentshudframetsx) 🆕 **New**
-   - [components/Button.tsx](#componentsbuttontsx) 🆕 **New**
+   - [components/BackgroundGrid.tsx](#componentsbackgroundgridtsx) 🆕 **New**
+   - [components/SectionFrame.tsx](#componentssectionframetsx) 🆕 **New**
+   - [components/RightRail.tsx](#componentsrightrailtsx) 🆕 **New**
+   - [components/Navigation.tsx](#componentsnavigationtsx) ⭐ **Updated**
+   - [components/Hero.tsx](#componentsherotsx) ⭐ **Updated**
+   - [components/Scene3D.tsx](#componentsscene3dtsx)
+   - [components/Cards.tsx](#componentscardstsx) ⭐ **Updated**
+   - [components/FAQ.tsx](#componentsfaqtsx) ⭐ **Updated**
+   - [components/HUDFrame.tsx](#componentshudframetsx)
+   - [components/Button.tsx](#componentsbuttontsx) ⭐ **Updated**
    - [components/Footer.tsx](#componentsfootertsx)
 
 ---
@@ -165,6 +185,8 @@ export default nextConfig;
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import BackgroundGrid from "@/components/BackgroundGrid";
+import RightRail from "@/components/RightRail";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -185,7 +207,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <BackgroundGrid />
+        <RightRail />
+        {children}
+      </body>
     </html>
   );
 }
@@ -201,6 +227,7 @@ export default function RootLayout({
 import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import SectionFrame from "@/components/SectionFrame";
 import { SectionHeader } from "@/components/FAQ";
 import {
   ValueCard,
@@ -818,6 +845,213 @@ html {
 ---
 
 ## Component Files
+
+### components/BackgroundGrid.tsx
+
+**File Path:** `/components/BackgroundGrid.tsx`
+
+```tsx
+"use client";
+
+export default function BackgroundGrid() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-[1]">
+      {/* Main grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.15]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 0%, black 60%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, black 0%, black 60%, transparent 100%)",
+        }}
+      />
+
+      {/* Secondary finer grid */}
+      <div
+        className="absolute inset-0 opacity-[0.08]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px)
+          `,
+          backgroundSize: "20px 20px",
+          maskImage:
+            "radial-gradient(ellipse at center, black 20%, transparent 80%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, black 20%, transparent 80%)",
+        }}
+      />
+    </div>
+  );
+}
+```
+
+---
+
+### components/SectionFrame.tsx
+
+**File Path:** `/components/SectionFrame.tsx`
+
+```tsx
+"use client";
+
+import { ReactNode } from "react";
+
+interface SectionFrameProps {
+  children: ReactNode;
+  index?: string;
+  className?: string;
+  showTopDivider?: boolean;
+  showBottomDivider?: boolean;
+}
+
+export default function SectionFrame({
+  children,
+  index,
+  className = "",
+  showTopDivider = true,
+  showBottomDivider = false,
+}: SectionFrameProps) {
+  return (
+    <div className={`relative ${className}`}>
+      {/* Top divider */}
+      {showTopDivider && (
+        <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+      )}
+
+      {/* Bottom divider */}
+      {showBottomDivider && (
+        <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/8 to-transparent" />
+      )}
+
+      <div className="relative flex">
+        {/* Optional index cell on left */}
+        {index && (
+          <div className="hidden lg:flex items-start pt-24 pr-8">
+            <div className="sticky top-32 flex flex-col items-center gap-4">
+              <div className="flex flex-col items-center gap-2 text-[10px] font-mono text-white/30 tracking-[0.2em] uppercase">
+                <div className="w-px h-12 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+                <span className="rotate-180 [writing-mode:vertical-lr]">
+                  {index}
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Main content */}
+        <div className="flex-1">{children}</div>
+      </div>
+
+      {/* Corner brackets */}
+      <div className="absolute top-0 left-0 w-12 h-12 border-l border-t border-white/5" />
+      <div className="absolute top-0 right-0 w-12 h-12 border-r border-t border-white/5" />
+      <div className="absolute bottom-0 left-0 w-12 h-12 border-l border-b border-white/5" />
+      <div className="absolute bottom-0 right-0 w-12 h-12 border-r border-b border-white/5" />
+    </div>
+  );
+}
+```
+
+---
+
+### components/RightRail.tsx
+
+**File Path:** `/components/RightRail.tsx`
+
+```tsx
+"use client";
+
+import { useEffect, useState } from "react";
+
+const sections = [
+  { id: "hero", label: "INTRO" },
+  { id: "about", label: "ABOUT" },
+  { id: "pillars", label: "CORE" },
+  { id: "programs", label: "TRAINING" },
+  { id: "events", label: "EVENTS" },
+  { id: "faq", label: "FAQ" },
+  { id: "contact", label: "CONTACT" },
+];
+
+export default function RightRail() {
+  const [activeSection, setActiveSection] = useState("hero");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "-100px 0px -50% 0px",
+      },
+    );
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const currentSectionLabel =
+    sections.find((s) => s.id === activeSection)?.label || "INTRO";
+
+  return (
+    <div className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-6 pointer-events-none">
+      {/* Section indicator */}
+      <div className="flex flex-col items-center gap-3 mb-2">
+        <div className="text-[9px] font-mono text-white/40 tracking-[0.25em] uppercase rotate-180 [writing-mode:vertical-lr]">
+          {currentSectionLabel}
+        </div>
+        <div className="w-px h-8 bg-gradient-to-b from-white/10 to-transparent" />
+      </div>
+
+      {/* Dot markers */}
+      <div className="flex flex-col items-center gap-3">
+        {sections.map((section) => (
+          <a
+            key={section.id}
+            href={`#${section.id}`}
+            className="group pointer-events-auto"
+            aria-label={section.label}
+          >
+            <div
+              className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                activeSection === section.id
+                  ? "bg-[#5B5FFF] scale-150 shadow-[0_0_12px_rgba(91,95,255,0.8)]"
+                  : "bg-white/20 hover:bg-white/40 hover:scale-125"
+              }`}
+            />
+          </a>
+        ))}
+      </div>
+
+      {/* MENU label */}
+      <div className="flex flex-col items-center gap-3 mt-2">
+        <div className="w-px h-8 bg-gradient-to-t from-white/10 to-transparent" />
+        <div className="text-[9px] font-mono text-white/30 tracking-[0.25em] uppercase rotate-180 [writing-mode:vertical-lr]">
+          MENU
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+---
 
 ### components/Navigation.tsx
 
