@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme-provider";
 
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="mn" suppressHydrationWarning>
-      <body className="antialiased">
+      <body className={`${GeistSans.className} antialiased`}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

@@ -53,7 +53,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
     <div className="frame overflow-hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 flex justify-between items-center gap-4 text-left hover:bg-[var(--border)] transition-colors"
+        className="w-full px-6 py-4 flex justify-between items-center gap-4 text-left hover:bg-[var(--border)] transition-colors focus-ring"
       >
         <span className="font-semibold">{question}</span>
         <svg
@@ -63,6 +63,7 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          aria-hidden="true"
         >
           <path
             strokeLinecap="round"
@@ -74,11 +75,13 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
       </button>
 
       <div
-        className={`transition-all duration-300 overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        className={`grid transition-all duration-300 ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
         }`}
       >
-        <div className="px-6 pb-4 text-muted">{answer}</div>
+        <div className="overflow-hidden">
+          <div className="px-6 pb-4 text-muted">{answer}</div>
+        </div>
       </div>
     </div>
   );

@@ -1,37 +1,43 @@
 import { Card } from "./Card";
 import { Section } from "./Section";
+import { BookOpen, Palette, Cog, Users, Trophy, Sprout } from "lucide-react";
 
 const missions = [
   {
-    icon: "📚",
+    icon: BookOpen,
     title: "Суралцах",
     description:
-      "Шинэ технологи, хэл, framework-ийг эзэмших, семинар, workshop-д оролцох",
+      "Web, mobile, AI зэрэг орчин үеийн технологийг workshop, hackathon-оор дамжуулан эзэмшинэ",
   },
   {
-    icon: "🎨",
+    icon: Palette,
     title: "Дизайн",
-    description: "UI/UX дизайн, брэнд, график дизайныг судлах, бүтээмж гаргах",
+    description:
+      "Figma, UI/UX дизайнаар бодит төсөлд ажиллаж портфолио бүтээнэ",
   },
   {
-    icon: "⚙️",
+    icon: Cog,
     title: "Инженерчлэл",
-    description: "Систем зохиох, программ бичих, бодит асуудлыг шийдвэрлэх",
+    description:
+      "Систем зохион бүтээж, өөрийн болон баг дүүргийн төслийг хөгжүүлнэ",
   },
   {
-    icon: "🤝",
+    icon: Users,
     title: "Хамтын ажиллагаа",
-    description: "Баг байгуулж, төсөл хөтөлж, туршлага солилцох",
+    description:
+      "Агуу их сургуулийн оюутнууд, IT компаний мэргэжилтнүүдтэй хамтран ажиллана",
   },
   {
-    icon: "🏆",
+    icon: Trophy,
     title: "Уралдаан",
-    description: "Hackathon, олимпиад, тэмцээнд оролцож, шагнал хүртэх",
+    description:
+      "Монгол болон олон улсын hackathon, олимпиадад оролцож шагнал хүртдэг",
   },
   {
-    icon: "🌱",
+    icon: Sprout,
     title: "Хөгжил",
-    description: "Мэргэжлийн болон хувийн ур чадвараа өргөжүүлэх",
+    description:
+      "Ур чадвар, мэдлэг, туршлага хуримтлуулж, CV/портфолиогоо бэхжүүлнэ",
   },
 ];
 
@@ -43,19 +49,24 @@ export function WhatWeDo() {
           Бид юу хийдэг вэ?
         </h2>
         <p className="text-xl text-muted max-w-2xl mx-auto">
-          Клубийн гол зорилго бол технологийн чиглэлээр сурч, бүтээж, хөгжих
-          орчин бүрдүүлэх явдал юм
+          Долоо хоног бүр уулзаж, сургалт зохион байгуулж, төсөл хэрэгжүүлж,
+          олон улсын тэмцээнд амжилттай оролцдог
         </p>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {missions.map((mission, index) => (
-          <Card key={index} hover>
-            <div className="text-4xl mb-4">{mission.icon}</div>
-            <h3 className="text-xl font-bold mb-2">{mission.title}</h3>
-            <p className="text-muted">{mission.description}</p>
-          </Card>
-        ))}
+        {missions.map((mission, index) => {
+          const Icon = mission.icon;
+          return (
+            <Card key={index} hover>
+              <div className="w-12 h-12 accent-bg/10 rounded-xl flex items-center justify-center mb-4">
+                <Icon className="w-6 h-6 text-(--accent)" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">{mission.title}</h3>
+              <p className="text-muted">{mission.description}</p>
+            </Card>
+          );
+        })}
       </div>
     </Section>
   );

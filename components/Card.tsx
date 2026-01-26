@@ -8,7 +8,7 @@ interface CardProps {
 
 export function Card({ children, className = "", hover = false }: CardProps) {
   const hoverStyles = hover
-    ? "hover:scale-105 hover:shadow-custom-lg cursor-pointer"
+    ? "hover:scale-[1.02] hover:shadow-custom-lg cursor-pointer"
     : "";
 
   return (

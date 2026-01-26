@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePrefersReducedMotion } from "@/lib/use-prefers-reduced-motion";
 
 interface StatCardProps {
   value: number;
@@ -18,6 +19,7 @@ export function StatCard({
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,7 +28,7 @@ export function StatCard({
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (ref.current) {
@@ -38,6 +40,12 @@ export function StatCard({
 
   useEffect(() => {
     if (!isVisible) return;
+
+    // If reduced motion, show final value immediately
+    if (prefersReducedMotion) {
+      setCount(value);
+      return;
+    }
 
     const duration = 2000;
     const steps = 60;
@@ -55,7 +63,7 @@ export function StatCard({
     }, duration / steps);
 
     return () => clearInterval(timer);
-  }, [isVisible, value]);
+  }, [isVisible, value, prefersReducedMotion]);
 
   return (
     <div ref={ref} className="frame p-8 text-center">

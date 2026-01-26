@@ -1,93 +1,155 @@
 "use client";
 
-import { useTheme } from "@/lib/theme-provider";
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 import { Button } from "./Button";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
-  const { theme, toggleTheme } = useTheme();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMobileMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isMobileMenuOpen]);
+
+  const navLinks = [
+    { href: "#about", label: "Бидний тухай" },
+    { href: "#trainings", label: "Сургалтууд" },
+    { href: "#community", label: "Нийгэмлэг" },
+    { href: "#faq", label: "Асуулт" },
+  ];
+
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass border-b border-custom backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 accent-bg rounded-xl flex items-center justify-center font-bold text-white">
-            S&C
+    <>
+      {/* Skip to content link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:surface focus:rounded-lg focus:shadow-custom focus-ring"
+      >
+        Skip to content
+      </a>
+
+      <nav className="fixed top-0 w-full z-50 glass border-b border-custom backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 accent-bg rounded-xl flex items-center justify-center font-bold text-white">
+              S&C
+            </div>
+            <span className="font-bold text-xl hidden sm:block">
+              Sys&CoTech
+            </span>
           </div>
-          <span className="font-bold text-xl hidden sm:block">Sys&CoTech</span>
-        </div>
 
-        {/* Nav Links */}
-        <div className="hidden md:flex items-center gap-8">
-          <a
-            href="#about"
-            className="hover:text-[var(--accent)] transition-colors"
-          >
-            Бидний тухай
-          </a>
-          <a
-            href="#trainings"
-            className="hover:text-[var(--accent)] transition-colors"
-          >
-            Сургалтууд
-          </a>
-          <a
-            href="#community"
-            className="hover:text-[var(--accent)] transition-colors"
-          >
-            Нийгэмлэг
-          </a>
-          <a
-            href="#faq"
-            className="hover:text-[var(--accent)] transition-colors"
-          >
-            Асуулт
-          </a>
-        </div>
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-(--accent) transition-colors focus-ring rounded"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-        {/* Theme Toggle + CTA */}
-        <div className="flex items-center gap-3">
+          {/* Desktop Theme Toggle + CTA */}
+          <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
+            <Button variant="primary">Элсэх</Button>
+          </div>
+
+          {/* Mobile Menu Button */}
           <button
-            onClick={toggleTheme}
-            className="w-10 h-10 rounded-xl surface border border-custom flex items-center justify-center hover:border-[var(--accent)] transition-all"
-            aria-label="Toggle theme"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg hover:surface transition-colors focus-ring"
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
-            {theme === "light" ? (
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
             ) : (
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
+              <Menu className="w-6 h-6" />
             )}
           </button>
-
-          <Button variant="primary" className="hidden sm:block">
-            Элсэх
-          </Button>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Menu Drawer */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Drawer */}
+          <div className="fixed top-0 right-0 bottom-0 w-[280px] surface border-l border-custom z-50 md:hidden overflow-y-auto">
+            <div className="p-6 space-y-8">
+              {/* Close button */}
+              <div className="flex justify-between items-center">
+                <span className="font-bold text-lg">Menu</span>
+                <button
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="p-2 rounded-lg hover:surface transition-colors focus-ring"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Nav Links */}
+              <nav className="space-y-1">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={handleLinkClick}
+                    className="block px-4 py-3 rounded-lg hover:surface transition-colors text-lg focus-ring"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
+              {/* CTA + Theme Toggle */}
+              <div className="space-y-3 pt-6 border-t border-custom">
+                <Button
+                  variant="primary"
+                  className="w-full"
+                  onClick={handleLinkClick}
+                >
+                  Элсэх
+                </Button>
+                <div className="flex justify-center">
+                  <ThemeToggle />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 }

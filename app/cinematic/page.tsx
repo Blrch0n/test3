@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Student innovation lab. Build. Compete. Ship.",
 };
 
-export default function Home() {
+export default function CinematicPage() {
   return (
     <div className="cinematic min-h-screen bg-black text-white">
       <CinematicContent />
