@@ -3,7 +3,6 @@
 export default function BackgroundGrid() {
   return (
     <div className="fixed inset-0 pointer-events-none z-[1]">
-      {/* Major + minor grid (crisper + more "technical") */}
       <div
         className="absolute inset-0"
         style={{
@@ -21,7 +20,6 @@ export default function BackgroundGrid() {
         }}
       />
 
-      {/* Subtle vignette (keeps corners darker like references) */}
       <div
         className="absolute inset-0"
         style={{

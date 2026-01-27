@@ -22,7 +22,6 @@ export function Card({ children, className = "", delay = 0 }: CardProps) {
       transition={{ duration: 0.5, delay, ease: [0.16, 1, 0.3, 1] }}
       className={`group relative rounded-xl glass-panel p-6 hover-lift hover:shadow-[0_8px_32px_rgba(0,0,0,0.4),0_0_40px_rgba(91,95,255,0.15)] transition-all duration-300 ${className}`}
     >
-      {/* Corner brackets */}
       <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-white/10 group-hover:border-[#5B5FFF]/40 transition-colors" />
       <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-white/10 group-hover:border-[#5B5FFF]/40 transition-colors" />
       <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-white/10 group-hover:border-[#5B5FFF]/40 transition-colors" />

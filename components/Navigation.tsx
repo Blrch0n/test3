@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#about", label: "About" },
@@ -44,13 +45,19 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-16">
-            {/* Logo with HUD accent */}
+            {/* Logo */}
             <a
               href="#top"
-              className="flex items-center gap-2.5 text-base font-semibold text-white hover:opacity-80 transition-opacity group"
+              className="flex items-center gap-2.5 hover:opacity-80 transition-opacity group"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-[#5B5FFF] group-hover:shadow-[0_0_8px_rgba(91,95,255,0.8)] transition-shadow" />
-              <span className="tracking-tight">Sys&CoTech</span>
+              <Image
+                src="/logo.png"
+                alt="Sys&CoTech Logo"
+                width={180}
+                height={40}
+                className="h-8 w-auto"
+                priority
+              />
             </a>
 
             {/* Desktop Nav Links - centered */}
