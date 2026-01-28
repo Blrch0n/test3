@@ -34,11 +34,11 @@ export function ActiveSectionProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        // Get all visible entries
+        
         const visibleEntries = entries.filter((entry) => entry.isIntersecting);
 
         if (visibleEntries.length > 0) {
-          // Find the entry with highest intersection ratio
+          
           const mostVisible = visibleEntries.reduce((prev, current) =>
             current.intersectionRatio > prev.intersectionRatio ? current : prev,
           );

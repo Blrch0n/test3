@@ -50,7 +50,7 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+            
             <a
               href="#hero"
               className="flex items-center gap-2.5 hover:opacity-80 transition-opacity group"
@@ -65,7 +65,7 @@ export default function Navigation() {
               />
             </a>
 
-            {/* Desktop Nav Links - centered */}
+            
             <ul className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -80,7 +80,7 @@ export default function Navigation() {
               ))}
             </ul>
 
-            {/* CTA Button - updated to match ChainGPT style */}
+            
             <div className="hidden md:flex items-center gap-3">
               <button
                 onClick={togglePalette}
@@ -100,7 +100,7 @@ export default function Navigation() {
               </button>
             </div>
 
-            {/* Mobile Menu Toggle */}
+            
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="md:hidden p-2 text-white hover:text-white/80 transition-colors"
@@ -112,7 +112,7 @@ export default function Navigation() {
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -150,7 +150,7 @@ export default function Navigation() {
                 ))}
               </ul>
 
-              {/* Command Palette Button in Mobile Menu */}
+              
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);

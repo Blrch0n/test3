@@ -117,13 +117,13 @@ export default function CommandPalette() {
     );
   }, [search]);
 
-  // Handle search input changes and reset selection
+  
   const handleSearchChange = useCallback((value: string) => {
     setSearch(value);
     setSelectedIndex(0);
   }, []);
 
-  // Focus input when modal opens
+  
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 50);
@@ -135,12 +135,12 @@ export default function CommandPalette() {
       closePalette();
 
       if (cmd.type === "action") {
-        // Handle action commands
+        
         if (cmd.id === "join") {
           setTimeout(() => openModal(), 100);
         }
       } else if (cmd.type === "section") {
-        // Smooth scroll to section
+        
         setTimeout(() => {
           const element = document.querySelector(cmd.href!);
           if (element) {
@@ -148,7 +148,7 @@ export default function CommandPalette() {
           }
         }, 100);
       } else {
-        // Open external link
+        
         window.open(cmd.href, "_blank", "noopener,noreferrer");
       }
     },
@@ -193,10 +193,10 @@ export default function CommandPalette() {
         className="fixed inset-0 z-[200] flex items-start justify-center pt-[15vh] px-4"
         onClick={closePalette}
       >
-        {/* Backdrop */}
+        
         <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
 
-        {/* Palette */}
+        
         <motion.div
           initial={{ scale: 0.96, y: -20 }}
           animate={{ scale: 1, y: 0 }}
@@ -205,14 +205,14 @@ export default function CommandPalette() {
           className="relative w-full max-w-2xl"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Corner brackets */}
+          
           <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-white/20" />
           <div className="absolute -top-1 -right-1 w-3 h-3 border-r border-t border-white/20" />
           <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l border-b border-white/20" />
           <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-white/20" />
 
           <div className="bg-[rgba(7,8,11,0.95)] backdrop-blur-2xl border border-white/8 rounded-xl shadow-2xl overflow-hidden">
-            {/* Search Input */}
+            
             <div className="flex items-center gap-3 px-4 py-4 border-b border-white/8">
               <Search className="w-5 h-5 text-white/40" />
               <input
@@ -228,7 +228,7 @@ export default function CommandPalette() {
               </span>
             </div>
 
-            {/* Results */}
+            
             <div className="max-h-[400px] overflow-y-auto">
               {filteredCommands.length === 0 ? (
                 <div className="px-4 py-8 text-center text-white/40 text-sm">
@@ -282,7 +282,7 @@ export default function CommandPalette() {
               )}
             </div>
 
-            {/* Footer */}
+            
             <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/8 bg-white/[0.02]">
               <div className="flex items-center gap-4 text-[10px] font-mono text-white/30 tracking-wider">
                 <span className="flex items-center gap-1.5">

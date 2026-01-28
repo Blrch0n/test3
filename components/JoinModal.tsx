@@ -39,7 +39,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const facebookLink = "https://www.facebook.com/syscotech";
-  const phoneNumber = "+976 9911-1234"; // Placeholder
+  const phoneNumber = "+976 9911-1234"; 
 
   useEffect(() => {
     if (isOpen && !isSubmitted) {
@@ -49,7 +49,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
 
   useEffect(() => {
     if (!isOpen) {
-      // Reset form when modal closes
+      
       const timer = setTimeout(() => {
         setIsSubmitted(false);
         setFormData({
@@ -110,7 +110,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
       return;
     }
 
-    // Save to localStorage
+    
     const submissions = JSON.parse(
       localStorage.getItem("joinSubmissions") || "[]",
     );
@@ -145,10 +145,10 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
         className="fixed inset-0 z-[250] flex items-center justify-center px-4"
         onClick={onClose}
       >
-        {/* Backdrop */}
+        
         <div className="absolute inset-0 bg-black/70 backdrop-blur-lg" />
 
-        {/* Modal */}
+        
         <motion.div
           initial={{ scale: 0.95, y: 20 }}
           animate={{ scale: 1, y: 0 }}
@@ -157,14 +157,14 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
           className="relative w-full max-w-md"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Corner brackets */}
+          
           <div className="absolute -top-1.5 -left-1.5 w-4 h-4 border-l-2 border-t-2 border-[#5B5FFF]/40" />
           <div className="absolute -top-1.5 -right-1.5 w-4 h-4 border-r-2 border-t-2 border-[#5B5FFF]/40" />
           <div className="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-l-2 border-b-2 border-[#5B5FFF]/40" />
           <div className="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-r-2 border-b-2 border-[#5B5FFF]/40" />
 
           <div className="bg-[rgba(7,8,11,0.98)] backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl overflow-hidden">
-            {/* Header */}
+            
             <div className="relative flex items-center justify-between px-6 py-5 border-b border-white/8">
               <div>
                 <h2 className="text-2xl font-bold">
@@ -185,11 +185,11 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
               </button>
             </div>
 
-            {/* Content */}
+            
             <div className="p-6">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Name */}
+                  
                   <div>
                     <label
                       htmlFor="name"
@@ -220,7 +220,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     )}
                   </div>
 
-                  {/* Email */}
+                  
                   <div>
                     <label
                       htmlFor="email"
@@ -249,7 +249,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     )}
                   </div>
 
-                  {/* Major */}
+                  
                   <div>
                     <label
                       htmlFor="major"
@@ -278,7 +278,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     )}
                   </div>
 
-                  {/* Interest */}
+                  
                   <div>
                     <label
                       htmlFor="interest"
@@ -319,7 +319,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     )}
                   </div>
 
-                  {/* Message (Optional) */}
+                  
                   <div>
                     <label
                       htmlFor="message"
@@ -339,7 +339,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     />
                   </div>
 
-                  {/* Submit Button */}
+                  
                   <button
                     type="submit"
                     className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-[var(--accent-blue)]/30 bg-[var(--accent-blue)]/10 text-white font-medium hover:border-[var(--accent-blue)]/50 hover:bg-[var(--accent-blue)]/20 hover:shadow-[0_0_24px_var(--panel-glow)] transition-all duration-200 relative overflow-hidden group"
@@ -350,14 +350,14 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                 </form>
               ) : (
                 <div className="space-y-5">
-                  {/* Success Icon */}
+                  
                   <div className="flex justify-center">
                     <div className="relative inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/30">
                       <CheckCircle className="w-8 h-8 text-[#00D4FF]" />
                     </div>
                   </div>
 
-                  {/* Success Message */}
+                  
                   <div className="text-center">
                     <h3 className="text-xl font-semibold mb-2">
                       Application Received!
@@ -368,7 +368,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     </p>
                   </div>
 
-                  {/* Contact Actions */}
+                  
                   <div className="space-y-3 pt-4">
                     <button
                       onClick={() => handleCopy(facebookLink, "facebook")}
@@ -423,7 +423,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                     </button>
                   </div>
 
-                  {/* Close Button */}
+                  
                   <button
                     onClick={onClose}
                     className="w-full mt-4 px-5 py-2.5 rounded-lg border border-white/10 bg-white/[0.02] text-white/70 font-medium hover:text-white hover:border-white/20 hover:bg-white/[0.04] transition-all"

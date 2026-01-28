@@ -19,7 +19,7 @@ export function HUDFrame({
 
   return (
     <div className={`relative ${className}`}>
-      {/* Corner brackets */}
+      
       <div className="absolute top-0 left-0 pointer-events-none">
         <div
           className={`absolute top-0 left-0 ${lineLength.split(" ")[0]} ${thickness.split(" ")[0]} bg-gradient-to-r from-[#5B5FFF] to-transparent`}

@@ -99,7 +99,7 @@ export function ProgramCard({
 }: ProgramCardProps) {
   return (
     <Card delay={delay} className="relative overflow-hidden min-h-[240px]">
-      {/* Subtle background number */}
+      
       <div className="absolute top-6 right-6 text-6xl font-bold text-white/[0.03] group-hover:text-white/[0.05] group-hover:scale-105 transition-all duration-300">
         {number}
       </div>
@@ -199,7 +199,7 @@ export function ProjectCard({
           {description}
         </p>
 
-        {/* Tags */}
+        
         <div className="flex flex-wrap gap-2 mb-5">
           {tags.map((tag, index) => (
             <span
@@ -211,7 +211,7 @@ export function ProjectCard({
           ))}
         </div>
 
-        {/* Links */}
+        
         <div className="flex flex-wrap gap-2">
           {links.map((link, index) => (
             <a

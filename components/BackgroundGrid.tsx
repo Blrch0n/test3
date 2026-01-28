@@ -9,7 +9,7 @@ export default function BackgroundGrid() {
     const auroraElement = auroraRef.current;
     if (!auroraElement) return;
 
-    // Passive pointer move listener for cursor-reactive scanner glow
+    
     const handlePointerMove = (e: PointerEvent) => {
       auroraElement.style.setProperty("--mx", `${e.clientX}px`);
       auroraElement.style.setProperty("--my", `${e.clientY}px`);
@@ -26,7 +26,7 @@ export default function BackgroundGrid() {
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0">
-      {/* Base dual-layer grid (24px + 96px) */}
+      
       <div
         className="absolute inset-0"
         style={{
@@ -44,7 +44,7 @@ export default function BackgroundGrid() {
         }}
       />
 
-      {/* Aurora Flow overlay - animated color along grid lines */}
+      
       <div
         ref={auroraRef}
         className="aurora-flow-overlay"
@@ -56,7 +56,7 @@ export default function BackgroundGrid() {
         }
       />
 
-      {/* Vignette overlay */}
+      
       <div
         className="absolute inset-0"
         style={{

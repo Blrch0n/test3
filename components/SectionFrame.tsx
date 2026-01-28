@@ -28,7 +28,7 @@ export default function SectionFrame({
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid lg:grid-cols-[96px_1fr] lg:gap-10">
-          {/* Left index rail */}
+          
           <div className="hidden lg:block pt-24">
             {index && (
               <div className="sticky top-28">
@@ -40,9 +40,9 @@ export default function SectionFrame({
             )}
           </div>
 
-          {/* Content column with vertical divider */}
+          
           <div className="relative lg:border-l lg:border-white/8 lg:pl-10">
-            {/* Corner brackets (subtle, 1px) */}
+            
             <div className="pointer-events-none absolute -top-3 -left-3 h-8 w-8 border-l border-t border-white/10" />
             <div className="pointer-events-none absolute -top-3 -right-3 h-8 w-8 border-r border-t border-white/10" />
             <div className="pointer-events-none absolute -bottom-3 -left-3 h-8 w-8 border-l border-b border-white/10" />

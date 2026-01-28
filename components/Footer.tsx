@@ -48,7 +48,7 @@ export default function Footer() {
           animate={isInView ? "visible" : "hidden"}
           className="grid md:grid-cols-3 gap-8 md:gap-12 mt-16"
         >
-          {/* Contact Info */}
+          
           <motion.div variants={itemVariants} className="space-y-6">
             <h4 className="text-lg font-semibold text-white/90">Contact</h4>
             <div className="space-y-4">
@@ -109,7 +109,7 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Quick Links */}
+          
           <motion.div variants={itemVariants} className="space-y-6">
             <h4 className="text-lg font-semibold text-white/90">Quick Links</h4>
             <ul className="space-y-3">
@@ -131,7 +131,7 @@ export default function Footer() {
             </ul>
           </motion.div>
 
-          {/* Policies */}
+          
           <motion.div variants={itemVariants} className="space-y-6">
             <h4 className="text-lg font-semibold text-white/90">
               Club Policies
@@ -167,7 +167,7 @@ export default function Footer() {
           </motion.div>
         </motion.div>
 
-        {/* Bottom Bar */}
+        
         <motion.div
           variants={itemVariants}
           initial="hidden"

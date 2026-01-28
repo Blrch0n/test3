@@ -28,7 +28,7 @@ export default function Hero() {
     checkMobile();
     window.addEventListener("resize", checkMobile);
 
-    // Lazy load 3D only when section is visible
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isMobile) {
@@ -77,14 +77,14 @@ export default function Hero() {
     >
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 md:py-20 w-full">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          {/* Left: Content */}
+          
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="space-y-8"
           >
-            {/* Badge Pill */}
+            
             <motion.div
               variants={itemVariants}
               className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md border border-white/10 bg-white/[0.02] text-[11px] font-mono uppercase tracking-wider text-white/60 backdrop-blur-sm"
@@ -93,7 +93,7 @@ export default function Hero() {
               <span>Est. 2009</span>
             </motion.div>
 
-            {/* Headline with corner brackets and gradient underline */}
+            
             <motion.div
               variants={itemVariants}
               className="relative corner-brackets pb-2"
@@ -117,7 +117,7 @@ export default function Hero() {
               build, and lead the next generation of digital innovation.
             </motion.p>
 
-            {/* CTA Buttons */}
+            
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-3 pt-2"
@@ -137,7 +137,7 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* HUD Line Separator */}
+            
             <motion.div
               variants={itemVariants}
               className="flex items-center gap-3 pt-2"
@@ -149,22 +149,22 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right: HUD-Framed 3D Panel */}
+          
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            {/* Main panel with corner brackets */}
+            
             <div className="relative aspect-square w-full max-w-lg mx-auto">
-              {/* Thin HUD Frame Lines - minimal */}
+              
               <div className="absolute top-0 left-0 w-16 h-[1px] bg-gradient-to-r from-[var(--accent-blue)]/40 to-transparent" />
               <div className="absolute top-0 left-0 w-[1px] h-16 bg-gradient-to-b from-[var(--accent-blue)]/40 to-transparent" />
               <div className="absolute bottom-0 right-0 w-16 h-[1px] bg-gradient-to-l from-[var(--accent-blue)]/40 to-transparent" />
               <div className="absolute bottom-0 right-0 w-[1px] h-16 bg-gradient-to-t from-[var(--accent-blue)]/40 to-transparent" />
 
-              {/* Glass panel container */}
+              
               <div className="relative rounded-2xl glass-panel overflow-hidden h-full border border-white/8">
                 {isMobile ? (
                   <div className="w-full h-full flex items-center justify-center p-12">
@@ -190,7 +190,7 @@ export default function Hero() {
                     </motion.div>
                   </div>
                 ) : (
-                  /* Desktop: 3D Scene */
+                  
                   shouldLoad3D && (
                     <Suspense
                       fallback={
@@ -205,7 +205,7 @@ export default function Hero() {
                   )
                 )}
 
-                {/* Overlay UI Card (Tooltip) */}
+                
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -230,7 +230,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

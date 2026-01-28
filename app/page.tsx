@@ -40,10 +40,10 @@ export default function Home() {
       <main>
         <Hero />
 
-        {/* About Section */}
+        
         <section id="about" className="relative overflow-hidden">
           <SectionFrame index="01" className="py-24 md:py-32" showTopDivider>
-            {/* Background Effects - subtle */}
+            
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute top-0 left-1/4 w-96 h-96 bg-[var(--accent-cyan)] opacity-[0.02] blur-[160px] rounded-full" />
             </div>
@@ -80,7 +80,7 @@ export default function Home() {
                 />
               </div>
 
-              {/* Stats Strip */}
+              
               <div className="relative group flex flex-col md:flex-row items-center justify-center gap-12 md:gap-20 p-10 md:p-12 rounded-xl bg-white/[0.02] border border-white/8 overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00D4FF]/5 via-[#5B5FFF]/5 to-[#E94FFF]/5 opacity-30" />
                 <div className="text-center">
@@ -108,10 +108,10 @@ export default function Home() {
           </SectionFrame>
         </section>
 
-        {/* Pillars Section */}
+        
         <section id="pillars" className="relative overflow-hidden">
           <SectionFrame index="02" className="py-24 md:py-32" showTopDivider>
-            {/* Background Gradient */}
+            
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[var(--accent-blue)] opacity-[0.02] blur-[180px] rounded-full" />
             </div>
@@ -173,10 +173,10 @@ export default function Home() {
           </SectionFrame>
         </section>
 
-        {/* Programs Section */}
+        
         <section id="programs" className="relative overflow-hidden">
           <SectionFrame index="03" className="py-24 md:py-32" showTopDivider>
-            {/* Centered Glow */}
+            
             <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
               <div className="w-[800px] h-[800px] bg-[var(--accent-cyan)] opacity-[0.015] blur-[220px] rounded-full" />
             </div>
@@ -218,10 +218,10 @@ export default function Home() {
           </SectionFrame>
         </section>
 
-        {/* Projects Section */}
+        
         <section id="projects" className="relative overflow-hidden">
           <SectionFrame index="04" className="py-24 md:py-32" showTopDivider>
-            {/* Background Gradient */}
+            
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[var(--accent-pink)] opacity-[0.02] blur-[160px] rounded-full" />
             </div>
@@ -232,10 +232,10 @@ export default function Home() {
           </SectionFrame>
         </section>
 
-        {/* Events Section */}
+        
         <section id="events" className="relative overflow-hidden">
           <SectionFrame index="05" className="py-24 md:py-32" showTopDivider>
-            {/* Diagonal Gradients */}
+            
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[var(--accent-violet)] opacity-[0.02] blur-[180px] rounded-full" />
             </div>

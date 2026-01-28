@@ -13,7 +13,7 @@ export default function Feedback() {
   return (
     <section id="feedback" className="relative overflow-hidden">
       <SectionFrame index="07" className="py-24 md:py-32" showTopDivider>
-        {/* Background Effects */}
+        
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[var(--accent-blue)] opacity-[0.03] blur-[180px] rounded-full" />
         </div>

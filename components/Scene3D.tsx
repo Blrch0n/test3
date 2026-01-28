@@ -11,7 +11,7 @@ import {
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
 
-// Section-based color schemes
+
 const sectionColors: Record<
   string,
   { core: string; outer: string; ring: string; bloom: number }
@@ -142,7 +142,7 @@ function Model({
 
     if (!groupRef.current) return;
 
-    // Smooth lerp towards mouse position
+    
     current.current.x += (mousePosition.x - current.current.x) * 0.05;
     current.current.y += (mousePosition.y - current.current.y) * 0.05;
 

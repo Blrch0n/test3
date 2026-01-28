@@ -9,7 +9,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Cmd+K or Ctrl+K
+      
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         setIsOpen((prev) => {
@@ -17,7 +17,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
           return !prev;
         });
       }
-      // "/" key when not in input/textarea
+      
       else if (
         e.key === "/" &&
         !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)
@@ -26,7 +26,7 @@ export function CommandPaletteProvider({ children }: { children: ReactNode }) {
         if (!isOpen) setOpenCount((c) => c + 1);
         setIsOpen(true);
       }
-      // Escape to close
+      
       else if (e.key === "Escape" && isOpen) {
         setIsOpen(false);
       }

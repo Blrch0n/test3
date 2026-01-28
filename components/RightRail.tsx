@@ -10,7 +10,7 @@ export default function RightRail() {
 
   return (
     <div className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-center gap-6 pointer-events-none">
-      {/* Section indicator */}
+      
       <div className="flex flex-col items-center gap-3 mb-2">
         <div className="text-[9px] font-mono text-white/40 tracking-[0.25em] uppercase rotate-180 [writing-mode:vertical-lr]">
           {currentSectionLabel}
@@ -18,7 +18,7 @@ export default function RightRail() {
         <div className="w-px h-8 bg-gradient-to-b from-white/10 to-transparent" />
       </div>
 
-      {/* Dot markers */}
+      
       <div className="flex flex-col items-center gap-3">
         {sections.map((section) => (
           <a
@@ -39,7 +39,7 @@ export default function RightRail() {
         ))}
       </div>
 
-      {/* MENU label */}
+      
       <div className="flex flex-col items-center gap-3 mt-2">
         <div className="w-px h-8 bg-gradient-to-t from-white/10 to-transparent" />
         <div className="text-[9px] font-mono text-white/30 tracking-[0.25em] uppercase rotate-180 [writing-mode:vertical-lr]">
