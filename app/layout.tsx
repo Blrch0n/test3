@@ -10,6 +10,8 @@ import { CommandPaletteProvider } from "@/components/CommandPalette/CommandPalet
 import CommandPalette from "@/components/CommandPalette/CommandPalette";
 import { JoinModalProvider } from "@/components/JoinModalProvider";
 import JoinModalWrapper from "@/components/JoinModalWrapper";
+import BootLoader from "@/components/BootLoader";
+import WebVitalsReporter from "@/components/WebVitalsReporter";
 
 export const metadata: Metadata = {
   title: "Sys&CoTech | Where Innovation Meets Community",
@@ -28,6 +30,8 @@ export default function RootLayout({
         <ActiveSectionProvider>
           <CommandPaletteProvider>
             <JoinModalProvider>
+              <WebVitalsReporter />
+              <BootLoader />
               <TopProgress />
               <BackgroundGrid />
               <RightRail />

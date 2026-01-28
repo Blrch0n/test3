@@ -1,7 +1,7 @@
 # Complete Code Files - Sys&CoTech Landing Page
 
 **Last Updated:** January 28, 2026  
-**Version:** V8.1 - Production Build Fixes  
+**Version:** V9.0 - Boot Loader & Social Proof  
 **Author:** GitHub Copilot (Claude Sonnet 4.5)
 
 ---
@@ -19,7 +19,49 @@ You can use this as a single source of truth for the entire project.
 
 ---
 
-## 🎯 Latest Updates (V8.1) - Production Build Fixes
+## 🎯 Latest Updates (V9.0) - Boot Loader & Social Proof
+
+### New Features ✨
+
+**BootLoader Component:**
+
+- ✅ **HUD-style preloader** - Full-screen loading screen with cinematic design
+- ✅ **Font loading optimization** - Waits for `document.fonts.ready` + 850ms minimum
+- ✅ **Scroll lock** - Prevents scroll while loading, restores on exit
+- ✅ **Corner brackets** - All 4 corners with gradient borders
+- ✅ **Center crosshair** - Horizontal and vertical HUD lines
+- ✅ **Scanline animation** - Continuous vertical sweep effect
+- ✅ **Center badge** - Rotating Zap icon with glass panel
+- ✅ **Smooth fade-out** - Framer Motion exit animation (0.6s)
+
+**AsSeenOn Component:**
+
+- ✅ **Social proof section** - "AS SEEN ON :" heading with spectral gradient
+- ✅ **Top marquee** - Social cards (Twitter, LinkedIn, Discord, Instagram) with testimonials
+- ✅ **Bottom marquee** - Logo strip (MongoDB, React, Next.js, etc.) in reverse direction
+- ✅ **Hover pause** - Both marquees pause on hover
+- ✅ **Seamless loop** - Duplicate arrays for continuous scroll
+- ✅ **HUD corners** - Top and bottom corner brackets
+- ✅ **Fade edges** - Mask gradient for smooth appearance
+- ✅ **Accessibility** - Full `prefers-reduced-motion` support (disables animation, enables scroll)
+
+**CSS Additions:**
+
+- ✅ **Marquee system** - `.marquee`, `.marquee__track`, `@keyframes marqueeX`
+- ✅ **Reverse direction** - `.marquee--reverse` for opposite scroll
+- ✅ **Mask edges** - `.mask-edges` for fade effect
+- ✅ **Hover states** - Pause animation on hover
+- ✅ **Reduced motion** - Fallback with horizontal scroll
+
+**Integration:**
+
+- ✅ **layout.tsx** - Added `<BootLoader />` inside providers
+- ✅ **page.tsx** - Added `<AsSeenOn />` after Hero section
+- ✅ **globals.css** - Appended marquee CSS system
+
+---
+
+## 🎯 Previous Updates (V8.1) - Production Build Fixes
 
 ### Build & Lint Audit - Zero Errors ✨
 
@@ -194,8 +236,8 @@ You can use this as a single source of truth for the entire project.
 club_web/
 ├── app/
 │   ├── layout.tsx                 # Root layout with all providers and global components
-│   ├── page.tsx                   # Main landing page with all sections (includes Projects)
-│   └── globals.css                # Global styles with ChainGPT design tokens
+│   ├── page.tsx                   # Main landing page with all sections (includes AsSeenOn)
+│   └── globals.css                # Global styles with ChainGPT design tokens + marquee CSS
 ├── components/
 │   ├── ActiveSectionProvider.tsx  # Unified section tracking with IntersectionObserver
 │   ├── TopProgress.tsx            # Scroll progress bar at top
@@ -206,6 +248,8 @@ club_web/
 │   ├── JoinModalProvider.tsx      # Join modal context provider
 │   ├── JoinModalWrapper.tsx       # Join modal wrapper component
 │   ├── JoinModal.tsx              # Full join form modal with validation
+│   ├── BootLoader.tsx             # HUD-style loading screen with font optimization (NEW V9.0)
+│   ├── AsSeenOn.tsx               # Social proof section with dual marquees (NEW V9.0)
 │   ├── Projects.tsx               # Projects showcase section
 │   ├── BackgroundGrid.tsx         # Full-page grid overlay (dual-layer)
 │   ├── SectionFrame.tsx           # Modular section wrapper with index
@@ -259,20 +303,22 @@ club_web/
 - [3.6 components/JoinModalProvider.tsx](#36-componentsjoinmodalprovidertsx)
 - [3.7 components/JoinModalWrapper.tsx](#37-componentsjoinmodalwrappertsx)
 - [3.8 components/JoinModal.tsx](#38-componentsjoinmodaltsx)
-- [3.9 components/Projects.tsx](#39-componentsprojectstsx)
-- [3.10 components/BackgroundGrid.tsx](#310-componentsbackgroundgridtsx)
-- [3.11 components/SectionFrame.tsx](#311-componentssectionframetsx)
-- [3.12 components/RightRail.tsx](#312-componentsrightrailtsx)
-- [3.13 components/Navigation.tsx](#313-componentsnavigationtsx)
-- [3.14 components/Hero.tsx](#314-componentsherotsx)
-- [3.15 components/Scene3D.tsx](#315-componentsscene3dtsx)
-- [3.16 components/Cards.tsx](#316-componentscardstsx)
-- [3.17 components/FAQ.tsx](#317-componentsfaqtsx)
-- [3.18 components/Feedback.tsx](#318-componentsfeedbacktsx)
-- [3.19 components/FeedbackForm.tsx](#319-componentsfeedbackformtsx)
-- [3.20 components/HUDFrame.tsx](#320-componentshudframetsx)
-- [3.21 components/Button.tsx](#321-componentsbuttontsx)
-- [3.22 components/Footer.tsx](#322-componentsfootertsx)
+- [3.9 components/BootLoader.tsx](#39-componentsbootloadertsx) **(NEW V9.0)**
+- [3.10 components/AsSeenOn.tsx](#310-componentsasseenontsx) **(NEW V9.0)**
+- [3.11 components/Projects.tsx](#311-componentsprojectstsx)
+- [3.12 components/BackgroundGrid.tsx](#312-componentsbackgroundgridtsx)
+- [3.13 components/SectionFrame.tsx](#313-componentssectionframetsx)
+- [3.14 components/RightRail.tsx](#314-componentsrightrailtsx)
+- [3.15 components/Navigation.tsx](#315-componentsnavigationtsx)
+- [3.16 components/Hero.tsx](#316-componentsherotsx)
+- [3.17 components/Scene3D.tsx](#317-componentsscene3dtsx)
+- [3.18 components/Cards.tsx](#318-componentscardstsx)
+- [3.19 components/FAQ.tsx](#319-componentsfaqtsx)
+- [3.20 components/Feedback.tsx](#320-componentsfeedbacktsx)
+- [3.21 components/FeedbackForm.tsx](#321-componentsfeedbackformtsx)
+- [3.22 components/HUDFrame.tsx](#322-componentshudframetsx)
+- [3.23 components/Button.tsx](#323-componentsbuttontsx)
+- [3.24 components/Footer.tsx](#324-componentsfootertsx)
 
 ### 4. [Installation & Setup](#4-installation--setup)
 
@@ -529,7 +575,7 @@ import "./.next/dev/types/routes.d.ts";
 
 **File Path:** `/app/layout.tsx`
 
-**Description**: Root layout component that wraps all pages. Includes Geist Sans & Geist Mono fonts, all global components (BackgroundGrid, RightRail, TopProgress, CommandPalette, JoinModalWrapper), and wraps the app with ActiveSectionProvider, CommandPaletteProvider, and JoinModalProvider for unified state management.
+**Description**: Root layout component that wraps all pages. Includes Geist Sans & Geist Mono fonts, all global components (BootLoader, BackgroundGrid, RightRail, TopProgress, CommandPalette, JoinModalWrapper), and wraps the app with ActiveSectionProvider, CommandPaletteProvider, and JoinModalProvider for unified state management.
 
 ```tsx
 import type { Metadata } from "next";
@@ -544,6 +590,7 @@ import { CommandPaletteProvider } from "@/components/CommandPalette/CommandPalet
 import CommandPalette from "@/components/CommandPalette/CommandPalette";
 import { JoinModalProvider } from "@/components/JoinModalProvider";
 import JoinModalWrapper from "@/components/JoinModalWrapper";
+import BootLoader from "@/components/BootLoader";
 
 export const metadata: Metadata = {
   title: "Sys&CoTech | Where Innovation Meets Community",
@@ -562,6 +609,7 @@ export default function RootLayout({
         <ActiveSectionProvider>
           <CommandPaletteProvider>
             <JoinModalProvider>
+              <BootLoader />
               <TopProgress />
               <BackgroundGrid />
               <RightRail />
@@ -588,7 +636,8 @@ export default function RootLayout({
    - `ActiveSectionProvider`: Enhanced section tracking with highest intersectionRatio algorithm
    - `CommandPaletteProvider`: Command palette state and keyboard shortcuts
    - `JoinModalProvider`: Join modal state management
-3. **Global Components**:
+3. **Global Components** (Updated V9.0):
+   - `BootLoader`: HUD-style preloader with font loading (z-index 9999)
    - `TopProgress`: Scroll progress bar (z-index 100)
    - `BackgroundGrid`: Full-page grid overlay (z-index 1)
    - `RightRail`: Vertical navigation (z-index 40)
@@ -610,6 +659,7 @@ export default function RootLayout({
 import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import AsSeenOn from "@/components/AsSeenOn";
 import SectionFrame from "@/components/SectionFrame";
 import { SectionHeader } from "@/components/FAQ";
 import {
@@ -648,6 +698,8 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+
+        <AsSeenOn />
 
         {/* About Section */}
         <section id="about" className="relative overflow-hidden">
@@ -885,16 +937,17 @@ export default function Home() {
 }
 ```
 
-**Section Breakdown**:
+**Section Breakdown** (Updated V9.0):
 
 1. **Navigation**: Fixed sticky header
 2. **Hero**: Full-screen hero with 3D scene
-3. **About (01)**: Value cards + stats strip
-4. **Pillars (02)**: Six core principles
-5. **Programs (03)**: Four training programs
-6. **Events (04)**: Four event types
-7. **FAQ**: Accordion with frequently asked questions
-8. **Footer**: Contact information and links
+3. **AsSeenOn**: Social proof with dual marquees (NEW)
+4. **About (01)**: Value cards + stats strip
+5. **Pillars (02)**: Six core principles
+6. **Programs (03)**: Four training programs
+7. **Events (04)**: Four event types
+8. **FAQ**: Accordion with frequently asked questions
+9. **Footer**: Contact information and links
 
 **Design Patterns**:
 
@@ -2167,7 +2220,349 @@ ${await read_file('/home/erdem/Downloads/club_web/components/JoinModal.tsx', 1, 
 
 ---
 
-## 3.9 components/Projects.tsx
+## 3.9 components/BootLoader.tsx
+
+**File Path:** `/components/BootLoader.tsx`
+
+**Description**: HUD-style full-screen boot loader with cinematic design. Waits for fonts to load and shows animated preloader with corner brackets, crosshair lines, and scanline effect. Locks scroll while visible and fades out smoothly with Framer Motion.
+
+```tsx
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Zap } from "lucide-react";
+
+export default function BootLoader() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    const waitForFonts = async () => {
+      if (document.fonts && document.fonts.ready) {
+        await document.fonts.ready;
+      }
+
+      await new Promise((resolve) => setTimeout(resolve, 850));
+
+      document.body.style.overflow = "";
+      setIsLoading(false);
+    };
+
+    waitForFonts();
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  return (
+    <AnimatePresence mode="wait">
+      {isLoading && (
+        <motion.div
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] bg-[#07080b] flex items-center justify-center pointer-events-none"
+        >
+          <div className="absolute top-8 left-8 w-16 h-16 pointer-events-none">
+            <div className="absolute top-0 left-0 w-16 h-[2px] bg-gradient-to-r from-[#5B5FFF] to-transparent" />
+            <div className="absolute top-0 left-0 w-[2px] h-16 bg-gradient-to-b from-[#5B5FFF] to-transparent" />
+          </div>
+
+          <div className="absolute top-8 right-8 w-16 h-16 pointer-events-none">
+            <div className="absolute top-0 right-0 w-16 h-[2px] bg-gradient-to-l from-[#5B5FFF] to-transparent" />
+            <div className="absolute top-0 right-0 w-[2px] h-16 bg-gradient-to-b from-[#5B5FFF] to-transparent" />
+          </div>
+
+          <div className="absolute bottom-8 left-8 w-16 h-16 pointer-events-none">
+            <div className="absolute bottom-0 left-0 w-16 h-[2px] bg-gradient-to-r from-[#5B5FFF] to-transparent" />
+            <div className="absolute bottom-0 left-0 w-[2px] h-16 bg-gradient-to-t from-[#5B5FFF] to-transparent" />
+          </div>
+
+          <div className="absolute bottom-8 right-8 w-16 h-16 pointer-events-none">
+            <div className="absolute bottom-0 right-0 w-16 h-[2px] bg-gradient-to-l from-[#5B5FFF] to-transparent" />
+            <div className="absolute bottom-0 right-0 w-[2px] h-16 bg-gradient-to-t from-[#5B5FFF] to-transparent" />
+          </div>
+
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="absolute w-full h-[1px] bg-gradient-to-r from-transparent via-[#5B5FFF]/30 to-transparent" />
+            <div className="absolute h-full w-[1px] bg-gradient-to-b from-transparent via-[#5B5FFF]/30 to-transparent" />
+          </div>
+
+          <motion.div
+            initial={{ top: "-10%" }}
+            animate={{ top: "110%" }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "linear",
+              repeatDelay: 0,
+            }}
+            className="absolute inset-x-0 h-[200px] pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(180deg, transparent 0%, rgba(91, 95, 255, 0.1) 50%, transparent 100%)",
+            }}
+          />
+
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="relative z-10"
+          >
+            <div className="relative glass-panel rounded-2xl p-8">
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+                className="flex items-center justify-center"
+              >
+                <Zap className="w-12 h-12 text-[#5B5FFF]" />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="mt-4 text-center"
+              >
+                <div className="hud-label">INITIALIZING</div>
+              </motion.div>
+
+              <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-[#5B5FFF]/50" />
+              <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-[#5B5FFF]/50" />
+              <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-[#5B5FFF]/50" />
+              <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-[#5B5FFF]/50" />
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+```
+
+**Key Features**:
+
+1. **Font Loading**: Waits for `document.fonts.ready` to ensure fonts are loaded
+2. **Minimum Display Time**: 850ms minimum to avoid flash
+3. **Scroll Lock**: Prevents scroll while loading, restores on exit
+4. **Corner Brackets**: All 4 corners with gradient borders in HUD style
+5. **Center Crosshair**: Horizontal and vertical HUD lines
+6. **Scanline Animation**: Continuous vertical sweep effect
+7. **Center Badge**: Glass panel with rotating Zap icon
+8. **Smooth Exit**: Framer Motion fade-out (0.6s)
+9. **z-index 9999**: Ensures loader is always on top
+10. **AnimatePresence**: Clean mount/unmount with exit animations
+
+---
+
+## 3.10 components/AsSeenOn.tsx
+
+**File Path:** `/components/AsSeenOn.tsx`
+
+**Description**: Social proof section with dual infinite marquees. Top row shows social cards with testimonials, bottom row displays logo strip. Both pause on hover and support reduced motion preferences with horizontal scroll fallback.
+
+```tsx
+"use client";
+
+import { Twitter, MessageCircle, Linkedin, Instagram } from "lucide-react";
+
+interface SocialCard {
+  source: string;
+  handle: string;
+  text: string;
+  icon: React.ReactNode;
+}
+
+interface Logo {
+  name: string;
+  width: string;
+}
+
+const socialCards: SocialCard[] = [
+  {
+    source: "Twitter",
+    handle: "@sysandcotech",
+    text: "This club transformed my understanding of tech. The projects we build here are next-level! 🚀",
+    icon: <Twitter className="w-4 h-4" />,
+  },
+  {
+    source: "LinkedIn",
+    handle: "Tech Professional",
+    text: "Best decision I made in university. The mentorship and community are incredible.",
+    icon: <Linkedin className="w-4 h-4" />,
+  },
+  {
+    source: "Discord",
+    handle: "Member #2047",
+    text: "From zero to hero in web dev. The resources and support here are unmatched!",
+    icon: <MessageCircle className="w-4 h-4" />,
+  },
+  {
+    source: "Instagram",
+    handle: "@techstudent",
+    text: "Amazing events, workshops, and hackathons. Learned more here than in any classroom.",
+    icon: <Instagram className="w-4 h-4" />,
+  },
+  {
+    source: "Twitter",
+    handle: "@mongoliaTech",
+    text: "Proud to be part of Mongolia's leading tech community. The future is being built here!",
+    icon: <Twitter className="w-4 h-4" />,
+  },
+  {
+    source: "LinkedIn",
+    handle: "Alumni Member",
+    text: "The skills I gained here directly led to my dream job. Forever grateful! 🙌",
+    icon: <Linkedin className="w-4 h-4" />,
+  },
+];
+
+const logos: Logo[] = [
+  { name: "MongoDB", width: "w-28" },
+  { name: "React", width: "w-20" },
+  { name: "Next.js", width: "w-24" },
+  { name: "TypeScript", width: "w-32" },
+  { name: "Vercel", width: "w-24" },
+  { name: "GitHub", width: "w-24" },
+  { name: "AWS", width: "w-20" },
+  { name: "Docker", width: "w-24" },
+  { name: "Figma", width: "w-20" },
+  { name: "Tailwind", width: "w-28" },
+];
+
+export default function AsSeenOn() {
+  const duplicatedCards = [...socialCards, ...socialCards];
+  const duplicatedLogos = [...logos, ...logos];
+
+  return (
+    <section className="relative py-20 md:py-32 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[var(--accent-blue)] opacity-[0.03] blur-[180px] rounded-full" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6">
+        <div className="absolute top-0 left-6 w-12 h-12 pointer-events-none">
+          <div className="absolute top-0 left-0 w-12 h-[1px] bg-gradient-to-r from-[#5B5FFF]/40 to-transparent" />
+          <div className="absolute top-0 left-0 w-[1px] h-12 bg-gradient-to-b from-[#5B5FFF]/40 to-transparent" />
+        </div>
+        <div className="absolute top-0 right-6 w-12 h-12 pointer-events-none">
+          <div className="absolute top-0 right-0 w-12 h-[1px] bg-gradient-to-l from-[#5B5FFF]/40 to-transparent" />
+          <div className="absolute top-0 right-0 w-[1px] h-12 bg-gradient-to-b from-[#5B5FFF]/40 to-transparent" />
+        </div>
+
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">
+            <span className="spectral-text">AS SEEN ON :</span>
+          </h2>
+          <div className="hud-label">COMMUNITY VOICES</div>
+        </div>
+
+        <div className="relative mb-12">
+          <div className="mask-edges">
+            <div className="marquee">
+              <div className="marquee__track">
+                {duplicatedCards.map((card, index) => (
+                  <div
+                    key={index}
+                    className="inline-block mx-3 w-[380px] flex-shrink-0"
+                  >
+                    <div className="glass-panel rounded-xl p-6 h-full hover:border-[var(--border-line-hover)] transition-colors">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[var(--bg-surface)] text-[var(--accent-blue)]">
+                          {card.icon}
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-[var(--text-primary)]">
+                            {card.source}
+                          </div>
+                          <div className="text-xs text-[var(--text-muted)]">
+                            {card.handle}
+                          </div>
+                        </div>
+                      </div>
+
+                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                        {card.text}
+                      </p>
+
+                      <div className="absolute top-3 right-3 w-3 h-3 border-r border-t border-[#5B5FFF]/30" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative">
+          <div className="mask-edges">
+            <div className="marquee marquee--reverse">
+              <div className="marquee__track">
+                {duplicatedLogos.map((logo, index) => (
+                  <div
+                    key={index}
+                    className="inline-flex items-center justify-center mx-8 flex-shrink-0"
+                  >
+                    <div
+                      className={`${logo.width} h-12 flex items-center justify-center rounded-lg bg-[var(--bg-surface)] border border-[var(--border-line)] hover:border-[var(--border-line-hover)] hover:bg-[var(--bg-surface-hover)] transition-colors px-4`}
+                    >
+                      <div className="text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">
+                        {logo.name}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="absolute bottom-0 left-6 w-12 h-12 pointer-events-none">
+          <div className="absolute bottom-0 left-0 w-12 h-[1px] bg-gradient-to-r from-[#5B5FFF]/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-[1px] h-12 bg-gradient-to-t from-[#5B5FFF]/40 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 right-6 w-12 h-12 pointer-events-none">
+          <div className="absolute bottom-0 right-0 w-12 h-[1px] bg-gradient-to-l from-[#5B5FFF]/40 to-transparent" />
+          <div className="absolute bottom-0 right-0 w-[1px] h-12 bg-gradient-to-t from-[#5B5FFF]/40 to-transparent" />
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+**Key Features**:
+
+1. **Dual Marquees**: Top social cards, bottom logo strip
+2. **Reverse Direction**: Bottom marquee scrolls opposite direction
+3. **Seamless Loop**: Duplicate arrays (50% translation) for infinite scroll
+4. **Hover Pause**: Both marquees pause on hover
+5. **HUD Corners**: Top and bottom corner brackets
+6. **Fade Edges**: Mask gradient for smooth appearance
+7. **Glass Panel Cards**: Social cards with icon, source, handle, text
+8. **Logo Badges**: Technology logos with hover states
+9. **Responsive**: Works on all screen sizes
+10. **Accessibility**: Full `prefers-reduced-motion` support (disables animation, enables horizontal scroll)
+
+**Marquee CSS** (added to globals.css):
+- `.marquee` and `.marquee__track` for structure
+- `@keyframes marqueeX` for animation (translateX -50%)
+- `.marquee--reverse` for opposite direction
+- `.mask-edges` for fade effect
+- Hover pause with `animation-play-state: paused`
+- Reduced-motion fallback with scrollable overflow
+
+---
+
+## 3.11 components/Projects.tsx
 
 **File Path:** `/components/Projects.tsx`
 
@@ -2279,7 +2674,7 @@ export default function Projects() {
 
 ---
 
-## 3.10 components/BackgroundGrid.tsx
+## 3.12 components/BackgroundGrid.tsx
 
 **File Path:** `/components/BackgroundGrid.tsx`
 
@@ -2374,7 +2769,7 @@ export default function BackgroundGrid() {
 
 ---
 
-## 3.2 components/SectionFrame.tsx
+## 3.13 components/SectionFrame.tsx
 
 **File Path:** `/components/SectionFrame.tsx`
 
@@ -2460,7 +2855,7 @@ export default function SectionFrame({
 
 ---
 
-## 3.8 components/RightRail.tsx
+## 3.14 components/RightRail.tsx
 
 **File Path:** `/components/RightRail.tsx`
 
@@ -2543,7 +2938,7 @@ export default function RightRail() {
 
 ---
 
-## 3.4 components/Navigation.tsx
+## 3.15 components/Navigation.tsx
 
 **File Path:** `/components/Navigation.tsx`
 
@@ -2712,7 +3107,7 @@ export default function Navigation() {
 
 ---
 
-## 3.5 components/Hero.tsx
+## 3.16 components/Hero.tsx
 
 **File Path:** `/components/Hero.tsx`
 
@@ -2984,7 +3379,7 @@ export default function Hero() {
 
 ---
 
-## 3.6 components/Scene3D.tsx
+## 3.17 components/Scene3D.tsx
 
 **File Path:** `/components/Scene3D.tsx`
 
@@ -3230,7 +3625,7 @@ export default function Scene3D() {
 
 ---
 
-## 3.7 components/Cards.tsx
+## 3.18 components/Cards.tsx
 
 **File Path:** `/components/Cards.tsx`
 
@@ -3436,7 +3831,7 @@ export function EventCard({
 
 ---
 
-## 3.8 components/FAQ.tsx
+## 3.19 components/FAQ.tsx
 
 **File Path:** `/components/FAQ.tsx`
 
@@ -3611,7 +4006,7 @@ export function SectionHeader({
 
 ---
 
-## 3.9 components/HUDFrame.tsx
+## 3.22 components/HUDFrame.tsx
 
 **File Path:** `/components/HUDFrame.tsx`
 
@@ -3700,7 +4095,7 @@ export function HUDFrame({
 
 ---
 
-## 3.21 components/Button.tsx
+## 3.23 components/Button.tsx
 
 **File Path:** `/components/Button.tsx`
 
@@ -3770,7 +4165,7 @@ export function Button({
 
 ---
 
-## 3.22 components/Footer.tsx
+## 3.24 components/Footer.tsx
 
 **File Path:** `/components/Footer.tsx`
 
@@ -3971,7 +4366,7 @@ export default function Footer() {
 
 ---
 
-## 3.18 components/Feedback.tsx
+## 3.20 components/Feedback.tsx
 
 **File Path:** `/components/Feedback.tsx`
 
@@ -4032,7 +4427,7 @@ export default function Feedback() {
 
 ---
 
-## 3.19 components/FeedbackForm.tsx
+## 3.21 components/FeedbackForm.tsx
 
 **File Path:** `/components/FeedbackForm.tsx`
 
@@ -4289,9 +4684,9 @@ export default function FeedbackForm() {
 
 ---
 
-## 3.20 components/HUDFrame.tsx
+---
 
-## Prerequisites
+# 4. Installation & Setup
 
 - **Node.js**: Version 18 or higher
 - **npm**: Version 9 or higher (or yarn/pnpm)

@@ -15,13 +15,23 @@ export default function Hero() {
   const { activeSection } = useActiveSection();
   const { openModal } = useJoinModal();
 
+  // Signal WebGL ready to BootLoader
+  const handleWebGLReady = () => {
+    if (typeof window !== "undefined") {
+      const win = window as Window & { __webglReady?: () => void };
+      if (win.__webglReady) {
+        win.__webglReady();
+      }
+    }
+  };
+
   useEffect(() => {
     const checkMobile = () => {
       const mobile = window.innerWidth < 768;
-      const nav = navigator as Navigator & { deviceMemory?: number };
+      const nav = navigator as Navigator & { deviceMemory?: number; hardwareConcurrency?: number };
       const lowPower =
         (nav.deviceMemory !== undefined && nav.deviceMemory < 4) ||
-        navigator.hardwareConcurrency < 4;
+        (nav.hardwareConcurrency !== undefined && nav.hardwareConcurrency < 4);
       setIsMobile(mobile || lowPower);
     };
 
@@ -199,8 +209,7 @@ export default function Hero() {
                         </div>
                       }
                     >
-                      activeSection={activeSection}
-                      <Scene3D />
+                      <Scene3D activeSection={activeSection} onReady={handleWebGLReady} />
                     </Suspense>
                   )
                 )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, memo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   Environment,
@@ -10,6 +10,11 @@ import {
 } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
 import * as THREE from "three";
+
+interface Scene3DProps {
+  activeSection?: string;
+  onReady?: () => void;
+}
 
 
 const sectionColors: Record<
@@ -161,12 +166,25 @@ function Model({
 function Scene({
   activeSection,
   mousePosition,
+  onReady,
 }: {
   activeSection: string;
   mousePosition: { x: number; y: number };
+  onReady?: () => void;
 }) {
-  const { camera } = useThree();
+  const { camera, gl } = useThree();
   const colors = sectionColors[activeSection] || sectionColors.hero;
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    // Signal ready after first frame renders
+    if (!isReady) {
+      requestAnimationFrame(() => {
+        setIsReady(true);
+        onReady?.();
+      });
+    }
+  }, [isReady, onReady]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -177,6 +195,13 @@ function Scene({
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [camera]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      gl.dispose();
+    };
+  }, [gl]);
 
   return (
     <>
@@ -217,20 +242,32 @@ function Scene({
   );
 }
 
-export default function Scene3D({
-  activeSection = "hero",
-}: {
-  activeSection?: string;
-}) {
-  const maxDpr =
-    typeof window !== "undefined"
-      ? Math.min(2, window.devicePixelRatio || 1)
-      : 1.5;
-  const initialDpr =
-    typeof window !== "undefined" && window.innerWidth < 768 ? 1 : maxDpr;
-  const [dpr] = useState(initialDpr);
+function Scene3D({ activeSection = "hero", onReady }: Scene3DProps) {
+  // Start with lower DPR, upgrade after idle
+  const [dpr, setDpr] = useState(1);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  const hasUpgradedDpr = useRef(false);
+
+  // Upgrade DPR after idle for better initial performance
+  useEffect(() => {
+    if (hasUpgradedDpr.current) return;
+
+    const upgradeDpr = () => {
+      if (typeof window === "undefined") return;
+      const targetDpr = window.innerWidth < 768 ? 1 : Math.min(2, window.devicePixelRatio || 1);
+      setDpr(targetDpr);
+      hasUpgradedDpr.current = true;
+    };
+
+    // Upgrade after page is interactive
+    if ("requestIdleCallback" in window) {
+      const requestIdleCallback = (window as Window & { requestIdleCallback: (cb: () => void, options?: { timeout: number }) => void }).requestIdleCallback;
+      requestIdleCallback(upgradeDpr, { timeout: 2000 });
+    } else {
+      setTimeout(upgradeDpr, 2000);
+    }
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -256,12 +293,17 @@ export default function Scene3D({
           antialias: false,
           alpha: true,
           powerPreference: "high-performance",
+          stencil: false,
+          depth: true,
         }}
         shadows={false}
         frameloop="always"
+        performance={{ min: 0.5 }}
       >
-        <Scene activeSection={activeSection} mousePosition={mousePosition} />
+        <Scene activeSection={activeSection} mousePosition={mousePosition} onReady={onReady} />
       </Canvas>
     </div>
   );
 }
+
+export default memo(Scene3D);

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
+import AsSeenOn from "@/components/AsSeenOn";
 import SectionFrame from "@/components/SectionFrame";
 import { SectionHeader } from "@/components/FAQ";
 import {
@@ -39,6 +40,9 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+
+        {/* AS SEEN ON Section */}
+        <AsSeenOn />
 
         
         <section id="about" className="relative overflow-hidden">
