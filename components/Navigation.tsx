@@ -1,14 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Command } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useCommandPalette } from "./CommandPalette/useCommandPalette";
+import { useJoinModal } from "./JoinModalProvider";
 
 const navLinks = [
   { href: "#about", label: "About" },
   { href: "#pillars", label: "Pillars" },
   { href: "#programs", label: "Programs" },
+  { href: "#projects", label: "Projects" },
   { href: "#events", label: "Events" },
   { href: "#faq", label: "FAQ" },
   { href: "#contact", label: "Contact" },
@@ -17,6 +20,8 @@ const navLinks = [
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { togglePalette } = useCommandPalette();
+  const { openModal } = useJoinModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,7 +52,7 @@ export default function Navigation() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <a
-              href="#top"
+              href="#hero"
               className="flex items-center gap-2.5 hover:opacity-80 transition-opacity group"
             >
               <Image
@@ -76,13 +81,24 @@ export default function Navigation() {
             </ul>
 
             {/* CTA Button - updated to match ChainGPT style */}
-            <a
-              href="#contact"
-              className="hidden md:flex items-center justify-center px-5 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white font-medium text-sm hover:border-[#5B5FFF]/40 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(91,95,255,0.2)] transition-all duration-200 relative overflow-hidden group"
-            >
-              <span className="relative z-10">Join Us</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#00D4FF]/10 via-[#5B5FFF]/10 to-[#9B4FFF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </a>
+            <div className="hidden md:flex items-center gap-3">
+              <button
+                onClick={togglePalette}
+                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white/70 hover:text-white font-medium text-xs hover:border-white/20 hover:bg-white/[0.04] transition-all duration-200 group"
+                aria-label="Open command palette"
+              >
+                <Command className="w-3.5 h-3.5" />
+                <span className="text-[10px] font-mono tracking-wider">⌘K</span>
+              </button>
+
+              <button
+                onClick={openModal}
+                className="flex items-center justify-center px-5 py-2 rounded-lg border border-white/10 bg-white/[0.02] text-white font-medium text-sm hover:border-[#5B5FFF]/40 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(91,95,255,0.2)] transition-all duration-200 relative overflow-hidden group"
+              >
+                <span className="relative z-10">Join Us</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#00D4FF]/10 via-[#5B5FFF]/10 to-[#9B4FFF]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </button>
+            </div>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -133,13 +149,28 @@ export default function Navigation() {
                   </motion.li>
                 ))}
               </ul>
-              <a
-                href="#contact"
-                onClick={handleLinkClick}
-                className="mt-6 block text-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#00D4FF] via-[#5B5FFF] to-[#9B4FFF] text-white font-semibold"
+
+              {/* Command Palette Button in Mobile Menu */}
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  togglePalette();
+                }}
+                className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-white/10 bg-white/[0.02] text-white/70 hover:text-white font-medium text-sm hover:border-white/20 hover:bg-white/[0.04] transition-all"
+              >
+                <Command className="w-4 h-4" />
+                <span>Command Palette</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  openModal();
+                }}
+                className="mt-2 block w-full text-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#00D4FF] via-[#5B5FFF] to-[#9B4FFF] text-white font-semibold"
               >
                 Join Us
-              </a>
+              </button>
             </motion.div>
           </motion.div>
         )}

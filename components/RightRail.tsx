@@ -1,42 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-const sections = [
-  { id: "hero", label: "INTRO" },
-  { id: "about", label: "ABOUT" },
-  { id: "pillars", label: "CORE" },
-  { id: "programs", label: "TRAINING" },
-  { id: "events", label: "EVENTS" },
-  { id: "faq", label: "FAQ" },
-  { id: "contact", label: "CONTACT" },
-];
+import { useActiveSection, sections } from "./ActiveSectionProvider";
 
 export default function RightRail() {
-  const [activeSection, setActiveSection] = useState("hero");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.3,
-        rootMargin: "-100px 0px -50% 0px",
-      },
-    );
-
-    sections.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const { activeSection } = useActiveSection();
 
   const currentSectionLabel =
     sections.find((s) => s.id === activeSection)?.label || "INTRO";
@@ -59,6 +26,7 @@ export default function RightRail() {
             href={`#${section.id}`}
             className="group pointer-events-auto"
             aria-label={section.label}
+            aria-current={activeSection === section.id ? "true" : undefined}
           >
             <div
               className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${

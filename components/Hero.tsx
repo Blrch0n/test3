@@ -4,12 +4,16 @@ import { Suspense, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import dynamic from "next/dynamic";
+import { useActiveSection } from "./ActiveSectionProvider";
+import { useJoinModal } from "./JoinModalProvider";
 
 const Scene3D = dynamic(() => import("@/components/Scene3D"), { ssr: false });
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
   const [shouldLoad3D, setShouldLoad3D] = useState(false);
+  const { activeSection } = useActiveSection();
+  const { openModal } = useJoinModal();
 
   useEffect(() => {
     const checkMobile = () => {
@@ -114,13 +118,13 @@ export default function Hero() {
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-3 pt-2"
             >
-              <a
-                href="#contact"
+              <button
+                onClick={openModal}
                 className="group inline-flex items-center justify-center px-7 py-3.5 rounded-lg border border-white/10 bg-gradient-to-r from-[#00D4FF]/10 via-[#5B5FFF]/10 to-[#9B4FFF]/10 text-white font-semibold text-sm hover:border-[#5B5FFF]/40 hover:shadow-[0_0_24px_rgba(91,95,255,0.3)] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden"
               >
                 <span className="relative z-10">Join the Club</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00D4FF]/20 via-[#5B5FFF]/20 to-[#9B4FFF]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </a>
+              </button>
               <a
                 href="#programs"
                 className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg border border-white/10 bg-white/[0.02] text-white font-semibold text-sm hover:border-white/20 hover:bg-white/[0.04] hover:-translate-y-0.5 transition-all duration-300"
@@ -191,6 +195,7 @@ export default function Hero() {
                         </div>
                       }
                     >
+                      activeSection={activeSection}
                       <Scene3D />
                     </Suspense>
                   )

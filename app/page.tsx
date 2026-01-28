@@ -9,7 +9,9 @@ import {
   ProgramCard,
   EventCard,
 } from "@/components/Cards";
+import Projects from "@/components/Projects";
 import FAQ from "@/components/FAQ";
+import Feedback from "@/components/Feedback";
 import Footer from "@/components/Footer";
 import {
   Layers,
@@ -35,7 +37,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="top">
         <Hero />
 
         {/* About Section */}
@@ -204,9 +206,21 @@ export default function Home() {
           </SectionFrame>
         </section>
 
+        {/* Projects Section */}
+        <section id="projects" className="relative overflow-hidden">
+          <SectionFrame index="04" className="py-24 md:py-32" showTopDivider>
+            {/* Background Gradient */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-[#E94FFF] opacity-[0.02] blur-[160px] rounded-full" />
+            </div>
+
+            <Projects />
+          </SectionFrame>
+        </section>
+
         {/* Events Section */}
         <section id="events" className="relative overflow-hidden">
-          <SectionFrame index="04" className="py-24 md:py-32" showTopDivider>
+          <SectionFrame index="05" className="py-24 md:py-32" showTopDivider>
             {/* Diagonal Gradients */}
             <div className="absolute inset-0 pointer-events-none">
               <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-[#9B4FFF] opacity-[0.02] blur-[180px] rounded-full" />
@@ -254,6 +268,7 @@ export default function Home() {
         </section>
 
         <FAQ />
+        <Feedback />
         <Footer />
       </main>
     </>

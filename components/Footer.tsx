@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Facebook, MapPin, Phone } from "lucide-react";
+import { Facebook, MapPin, Phone, Mail } from "lucide-react";
 import { SectionHeader } from "./FAQ";
 
 export default function Footer() {
@@ -66,6 +66,15 @@ export default function Footer() {
                   <Phone size={18} />
                 </div>
                 <span>+976 9435 1314</span>
+              </a>
+              <a
+                href="mailto:contact@syscotech.club"
+                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
+                  <Mail size={18} />
+                </div>
+                <span className="break-all">contact@syscotech.club</span>
               </a>
               <div className="flex items-start gap-3 text-white/70">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10">

@@ -160,3 +160,81 @@ export function EventCard({
     </Card>
   );
 }
+
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  tags: string[];
+  links: { label: string; href: string }[];
+  image?: string;
+  delay?: number;
+}
+
+export function ProjectCard({
+  title,
+  description,
+  tags,
+  links,
+  image,
+  delay = 0,
+}: ProjectCardProps) {
+  return (
+    <Card delay={delay} className="flex flex-col h-full">
+      {image && (
+        <div className="relative w-full h-48 mb-5 -mx-6 -mt-6 overflow-hidden rounded-t-xl border-b border-white/8">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#07080B]/60" />
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+          />
+        </div>
+      )}
+
+      <div className="flex flex-col flex-1">
+        <h3 className="text-xl font-semibold mb-3 group-hover:text-[#00D4FF] transition-colors">
+          {title}
+        </h3>
+        <p className="text-white/55 text-sm leading-relaxed mb-5 flex-1">
+          {description}
+        </p>
+
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {tags.map((tag, index) => (
+            <span
+              key={index}
+              className="px-2.5 py-1 rounded-md bg-white/[0.02] border border-white/10 text-[11px] font-mono uppercase tracking-wider text-white/50 group-hover:border-[#00D4FF]/30 group-hover:text-white/70 transition-all"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Links */}
+        <div className="flex flex-wrap gap-2">
+          {links.map((link, index) => (
+            <a
+              key={index}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white/[0.02] border border-[#00D4FF]/20 text-[#00D4FF] text-xs font-medium hover:bg-white/[0.04] hover:border-[#00D4FF]/40 hover:shadow-[0_0_16px_rgba(0,212,255,0.2)] transition-all"
+            >
+              {link.label}
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M6 12L10 8L6 4"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+    </Card>
+  );
+}
