@@ -160,24 +160,24 @@ export default function CommandPalette() {
           onClick={(e) => e.stopPropagation()}
         >
           {}
-          <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-white/20" />
-          <div className="absolute -top-1 -right-1 w-3 h-3 border-r border-t border-white/20" />
-          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l border-b border-white/20" />
-          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-white/20" />
+          <div className="absolute -top-1 -left-1 w-3 h-3 border-l border-t border-[var(--border-line)]" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 border-r border-t border-[var(--border-line)]" />
+          <div className="absolute -bottom-1 -left-1 w-3 h-3 border-l border-b border-[var(--border-line)]" />
+          <div className="absolute -bottom-1 -right-1 w-3 h-3 border-r border-b border-[var(--border-line)]" />
 
-          <div className="bg-[rgba(7,8,11,0.95)] backdrop-blur-2xl border border-white/8 rounded-xl shadow-2xl overflow-hidden">
+          <div className="bg-[var(--bg-base)]/95 backdrop-blur-2xl border border-[var(--border-line)] rounded-xl shadow-2xl overflow-hidden">
             {}
-            <div className="flex items-center gap-3 px-4 py-4 border-b border-white/8">
-              <Search className="w-5 h-5 text-white/40" />
+            <div className="flex items-center gap-3 px-4 py-4 border-b border-[var(--border-line)]">
+              <Search className="w-5 h-5 text-[var(--text-muted)]" />
               <input
                 ref={inputRef}
                 type="text"
                 value={search}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 placeholder="Search commands..."
-                className="flex-1 bg-transparent text-white placeholder:text-white/30 outline-none text-sm"
+                className="flex-1 bg-transparent text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none text-sm"
               />
-              <span className="text-[10px] font-mono text-white/30 tracking-wider">
+              <span className="text-[10px] font-mono text-[var(--text-muted)] tracking-wider">
                 ESC
               </span>
             </div>
@@ -185,7 +185,7 @@ export default function CommandPalette() {
             {}
             <div className="max-h-100 overflow-y-auto">
               {filteredCommands.length === 0 ? (
-                <div className="px-4 py-8 text-center text-white/40 text-sm">
+                <div className="px-4 py-8 text-center text-[var(--text-muted)] text-sm">
                   No results found
                 </div>
               ) : (
@@ -197,11 +197,11 @@ export default function CommandPalette() {
                       onMouseEnter={() => setSelectedIndex(index)}
                       className={`w-full flex items-center gap-3 px-4 py-3 transition-colors ${
                         index === selectedIndex
-                          ? "bg-white/8 border-l-2 border-(--accent-blue)"
-                          : "hover:bg-white/4"
+                          ? "bg-[var(--bg-surface-active)] border-l-2 border-(--accent-blue)"
+                          : "hover:bg-[var(--bg-surface-hover)]"
                       }`}
                     >
-                      <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 border border-white/8">
+                      <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-line)]">
                         {cmd.type === "route" ? (
                           <Hash className="w-4 h-4 text-(--accent-cyan)" />
                         ) : cmd.type === "action" ? (
@@ -211,22 +211,22 @@ export default function CommandPalette() {
                         )}
                       </div>
                       <div className="flex-1 text-left">
-                        <div className="text-sm font-medium text-white">
+                        <div className="text-sm font-medium text-[var(--text-primary)]">
                           {cmd.label}
                         </div>
                         {cmd.description && (
-                          <div className="text-xs text-white/40">
+                          <div className="text-xs text-[var(--text-muted)]">
                             {cmd.description}
                           </div>
                         )}
                       </div>
                       {cmd.type === "route" && (
-                        <span className="text-[9px] font-mono text-white/30 tracking-wider uppercase">
+                        <span className="text-[9px] font-mono text-[var(--text-muted)] tracking-wider uppercase">
                           GO
                         </span>
                       )}
                       {cmd.type === "action" && (
-                        <span className="text-[9px] font-mono text-white/30 tracking-wider uppercase">
+                        <span className="text-[9px] font-mono text-[var(--text-muted)] tracking-wider uppercase">
                           ACTION
                         </span>
                       )}
@@ -237,22 +237,22 @@ export default function CommandPalette() {
             </div>
 
             {}
-            <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/8 bg-white/2">
-              <div className="flex items-center gap-4 text-[10px] font-mono text-white/30 tracking-wider">
+            <div className="flex items-center justify-between px-4 py-2.5 border-t border-[var(--border-line)] bg-[var(--bg-surface)]">
+              <div className="flex items-center gap-4 text-[10px] font-mono text-[var(--text-muted)] tracking-wider">
                 <span className="flex items-center gap-1.5">
-                  <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">
+                  <kbd className="px-1.5 py-0.5 rounded bg-[var(--bg-surface)] border border-[var(--border-line)]">
                     ↑↓
                   </kbd>
                   NAVIGATE
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <kbd className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10">
+                  <kbd className="px-1.5 py-0.5 rounded bg-[var(--bg-surface)] border border-[var(--border-line)]">
                     ↵
                   </kbd>
                   SELECT
                 </span>
               </div>
-              <span className="text-[9px] font-mono text-white/20 tracking-wider">
+              <span className="text-[9px] font-mono text-[var(--text-mono)] tracking-wider">
                 COMMAND PALETTE
               </span>
             </div>

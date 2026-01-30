@@ -158,13 +158,13 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
           <div className="absolute -bottom-1.5 -left-1.5 w-4 h-4 border-l-2 border-b-2 border-[#5B5FFF]/40" />
           <div className="absolute -bottom-1.5 -right-1.5 w-4 h-4 border-r-2 border-b-2 border-[#5B5FFF]/40" />
 
-          <div className="bg-[rgba(7,8,11,0.98)] backdrop-blur-2xl border border-white/10 rounded-xl shadow-2xl overflow-hidden">
-            <div className="relative flex items-center justify-between px-6 py-5 border-b border-white/8">
+          <div className="bg-[var(--bg-base)]/98 backdrop-blur-2xl border border-[var(--border-line)] rounded-xl shadow-2xl overflow-hidden">
+            <div className="relative flex items-center justify-between px-6 py-5 border-b border-[var(--border-line)]">
               <div>
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-2xl font-bold text-[var(--text-primary)]">
                   {isSubmitted ? "Welcome!" : "Join Sys&CoTech"}
                 </h2>
-                <p className="text-sm text-white/50 mt-1">
+                <p className="text-sm text-[var(--text-muted)] mt-1">
                   {isSubmitted
                     ? "Application received successfully"
                     : "Start your innovation journey"}
@@ -172,7 +172,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
               </div>
               <button
                 onClick={onClose}
-                className="flex items-center justify-center w-8 h-8 rounded-lg border border-white/10 bg-white/2 text-white/50 hover:text-white hover:border-white/20 hover:bg-white/4 transition-all"
+                className="flex items-center justify-center w-8 h-8 rounded-lg border border-[var(--border-line)] bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-line-hover)] hover:bg-[var(--bg-surface-hover)] transition-all"
                 aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
@@ -185,7 +185,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   <div>
                     <label
                       htmlFor="name"
-                      className="block text-sm font-medium text-white/70 mb-2"
+                      className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
                     >
                       Full Name <span className="text-(--accent-pink)">*</span>
                     </label>
@@ -197,11 +197,11 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, name: e.target.value })
                       }
-                      className={`w-full px-4 py-2.5 rounded-lg bg-white/2 border ${
+                      className={`w-full px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border ${
                         errors.name
                           ? "border-(--accent-pink)/40"
-                          : "border-white/10"
-                      } text-white placeholder:text-white/30 focus:outline-none focus:border-(--accent-blue)/40 focus:bg-white/4 transition-all`}
+                          : "border-[var(--border-line)]"
+                      } text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-(--accent-blue)/40 focus:bg-[var(--bg-surface-hover)] transition-all`}
                       placeholder="Your name"
                     />
                     {errors.name && (
@@ -214,7 +214,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-white/70 mb-2"
+                      className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
                     >
                       Email <span className="text-(--accent-pink)">*</span>
                     </label>
@@ -225,11 +225,11 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, email: e.target.value })
                       }
-                      className={`w-full px-4 py-2.5 rounded-lg bg-white/2 border ${
+                      className={`w-full px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border ${
                         errors.email
                           ? "border-(--accent-pink)/40"
-                          : "border-white/10"
-                      } text-white placeholder:text-white/30 focus:outline-none focus:border-(--accent-blue)/40 focus:bg-white/4 transition-all`}
+                          : "border-[var(--border-line)]"
+                      } text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-(--accent-blue)/40 focus:bg-[var(--bg-surface-hover)] transition-all`}
                       placeholder="your.email@example.com"
                     />
                     {errors.email && (
@@ -242,7 +242,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   <div>
                     <label
                       htmlFor="major"
-                      className="block text-sm font-medium text-white/70 mb-2"
+                      className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
                     >
                       Major <span className="text-(--accent-pink)">*</span>
                     </label>
@@ -253,11 +253,11 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, major: e.target.value })
                       }
-                      className={`w-full px-4 py-2.5 rounded-lg bg-white/2 border ${
+                      className={`w-full px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border ${
                         errors.major
                           ? "border-(--accent-pink)/40"
-                          : "border-white/10"
-                      } text-white placeholder:text-white/30 focus:outline-none focus:border-(--accent-blue)/40 focus:bg-white/4 transition-all`}
+                          : "border-[var(--border-line)]"
+                      } text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-(--accent-blue)/40 focus:bg-[var(--bg-surface-hover)] transition-all`}
                       placeholder="e.g., Computer Science"
                     />
                     {errors.major && (
@@ -270,7 +270,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   <div>
                     <label
                       htmlFor="interest"
-                      className="block text-sm font-medium text-white/70 mb-2"
+                      className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
                     >
                       Primary Interest{" "}
                       <span className="text-(--accent-pink)">*</span>
@@ -281,20 +281,20 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                       onChange={(e) =>
                         setFormData({ ...formData, interest: e.target.value })
                       }
-                      className={`w-full px-4 py-2.5 rounded-lg bg-white/2 border ${
+                      className={`w-full px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border ${
                         errors.interest
                           ? "border-(--accent-pink)/40"
-                          : "border-white/10"
-                      } text-white focus:outline-none focus:border-(--accent-blue)/40 focus:bg-white/4 transition-all`}
+                          : "border-[var(--border-line)]"
+                      } text-[var(--text-primary)] focus:outline-none focus:border-(--accent-blue)/40 focus:bg-[var(--bg-surface-hover)] transition-all`}
                     >
-                      <option value="" className="bg-[#07080B]">
+                      <option value="" className="bg-[var(--bg-base)]">
                         Select an area
                       </option>
                       {interestOptions.map((option) => (
                         <option
                           key={option}
                           value={option}
-                          className="bg-[#07080B]"
+                          className="bg-[var(--bg-base)]"
                         >
                           {option}
                         </option>
@@ -310,7 +310,7 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   <div>
                     <label
                       htmlFor="message"
-                      className="block text-sm font-medium text-white/70 mb-2"
+                      className="block text-sm font-medium text-[var(--text-secondary)] mb-2"
                     >
                       Message (Optional)
                     </label>
@@ -321,14 +321,14 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                         setFormData({ ...formData, message: e.target.value })
                       }
                       rows={3}
-                      className="w-full px-4 py-2.5 rounded-lg bg-white/2 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-(--accent-blue)/40 focus:bg-white/4 transition-all resize-none"
+                      className="w-full px-4 py-2.5 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-(--accent-blue)/40 focus:bg-[var(--bg-surface-hover)] transition-all resize-none"
                       placeholder="Tell us about yourself..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-(--accent-blue)/30 bg-(--accent-blue)/10 text-white font-medium hover:border-(--accent-blue)/50 hover:bg-(--accent-blue)/20 hover:shadow-[0_0_24px_var(--panel-glow)] transition-all duration-200 relative overflow-hidden group"
+                    className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg border border-(--accent-blue)/30 bg-(--accent-blue)/10 text-[var(--text-primary)] font-medium hover:border-(--accent-blue)/50 hover:bg-(--accent-blue)/20 hover:shadow-[0_0_24px_var(--panel-glow)] transition-all duration-200 relative overflow-hidden group"
                   >
                     <span className="relative z-10">Submit Application</span>
                     <div className="absolute inset-0 bg-linear-to-r from-(--accent-blue)/20 via-(--accent-cyan)/20 to-(--accent-blue)/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -343,10 +343,10 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   </div>
 
                   <div className="text-center">
-                    <h3 className="text-xl font-semibold mb-2">
+                    <h3 className="text-xl font-semibold mb-2 text-[var(--text-primary)]">
                       Application Received!
                     </h3>
-                    <p className="text-white/60 text-sm leading-relaxed">
+                    <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                       Thanks for your interest, {formData.name}! Connect with us
                       through Facebook or call to complete your registration.
                     </p>
@@ -355,17 +355,17 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                   <div className="space-y-3 pt-4">
                     <button
                       onClick={() => handleCopy(facebookLink, "facebook")}
-                      className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-white/10 bg-white/2 hover:bg-white/4 hover:border-[#5B5FFF]/30 transition-all group"
+                      className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-[var(--border-line)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] hover:border-[#5B5FFF]/30 transition-all group"
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#5B5FFF]/10 border border-[#5B5FFF]/20 group-hover:border-[#5B5FFF]/40 transition-all">
                           <Facebook className="w-5 h-5 text-[#5B5FFF]" />
                         </div>
                         <div className="text-left">
-                          <div className="text-sm font-medium">
+                          <div className="text-sm font-medium text-[var(--text-primary)]">
                             Visit on Facebook
                           </div>
-                          <div className="text-xs text-white/40">
+                          <div className="text-xs text-[var(--text-muted)]">
                             @syscotech
                           </div>
                         </div>
@@ -376,21 +376,21 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                             Copied!
                           </span>
                         )}
-                        <Copy className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-colors" />
+                        <Copy className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-secondary)] transition-colors" />
                       </div>
                     </button>
 
                     <button
                       onClick={() => handleCopy(phoneNumber, "phone")}
-                      className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-white/10 bg-white/2 hover:bg-white/4 hover:border-[#00D4FF]/30 transition-all group"
+                      className="w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg border border-[var(--border-line)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)] hover:border-[#00D4FF]/30 transition-all group"
                     >
                       <div className="flex items-center gap-3">
                         <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[#00D4FF]/10 border border-[#00D4FF]/20 group-hover:border-[#00D4FF]/40 transition-all">
                           <Phone className="w-5 h-5 text-[#00D4FF]" />
                         </div>
                         <div className="text-left">
-                          <div className="text-sm font-medium">Call Us</div>
-                          <div className="text-xs text-white/40">
+                          <div className="text-sm font-medium text-[var(--text-primary)]">Call Us</div>
+                          <div className="text-xs text-[var(--text-muted)]">
                             {phoneNumber}
                           </div>
                         </div>
@@ -401,14 +401,14 @@ export default function JoinModal({ isOpen, onClose }: JoinModalProps) {
                             Copied!
                           </span>
                         )}
-                        <Copy className="w-4 h-4 text-white/40 group-hover:text-white/60 transition-colors" />
+                        <Copy className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--text-secondary)] transition-colors" />
                       </div>
                     </button>
                   </div>
 
                   <button
                     onClick={onClose}
-                    className="w-full mt-4 px-5 py-2.5 rounded-lg border border-white/10 bg-white/2 text-white/70 font-medium hover:text-white hover:border-white/20 hover:bg-white/4 transition-all"
+                    className="w-full mt-4 px-5 py-2.5 rounded-lg border border-[var(--border-line)] bg-[var(--bg-surface)] text-[var(--text-secondary)] font-medium hover:text-[var(--text-primary)] hover:border-[var(--border-line-hover)] hover:bg-[var(--bg-surface-hover)] transition-all"
                   >
                     Close
                   </button>

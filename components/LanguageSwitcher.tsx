@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Languages } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function LanguageSwitcher() {
@@ -12,7 +11,9 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => setLanguage("en")}
         className={`relative px-3 py-1.5 text-xs font-medium transition-colors ${
-          language === "en" ? "text-[var(--text-primary)]" : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+          language === "en"
+            ? "text-[var(--text-primary)]"
+            : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
         }`}
       >
         {language === "en" && (
@@ -26,15 +27,14 @@ export default function LanguageSwitcher() {
             }}
           />
         )}
-        <span className="relative z-10 flex items-center gap-1.5">
-          <Languages className="w-3.5 h-3.5" />
-          EN
-        </span>
+        <span className="relative z-10">EN</span>
       </button>
       <button
         onClick={() => setLanguage("mn")}
         className={`relative px-3 py-1.5 text-xs font-medium transition-colors ${
-          language === "mn" ? "text-[var(--text-primary)]" : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+          language === "mn"
+            ? "text-[var(--text-primary)]"
+            : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
         }`}
       >
         {language === "mn" && (
@@ -48,10 +48,7 @@ export default function LanguageSwitcher() {
             }}
           />
         )}
-        <span className="relative z-10 flex items-center gap-1.5">
-          <Languages className="w-3.5 h-3.5" />
-          МН
-        </span>
+        <span className="relative z-10">МН</span>
       </button>
     </div>
   );

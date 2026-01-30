@@ -43,7 +43,6 @@ export default function ThemeSwitcher() {
           title={`Switch to ${label} mode`}
         >
           <Icon className="w-4 h-4" />
-          <span className="hidden sm:inline">{label}</span>
           {theme === name && (
             <div className="absolute inset-0 rounded-md border border-[var(--border-accent)] pointer-events-none" />
           )}

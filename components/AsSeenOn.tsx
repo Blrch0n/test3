@@ -18,37 +18,37 @@ const socialCards: SocialCard[] = [
   {
     source: "Twitter",
     handle: "@sysandcotech",
-    text: "Built my first full-stack app during the fall project sprint. Got help debugging from senior members.",
+    text: "Built my first full-stack app ",
     icon: <Twitter className="w-4 h-4" />,
   },
   {
     source: "LinkedIn",
     handle: "2nd-year CS student",
-    text: "The weekly workshops helped me understand React hooks better than my coursework.",
+    text: "The weekly workshops helped me",
     icon: <Linkedin className="w-4 h-4" />,
   },
   {
     source: "Discord",
     handle: "Member #2047",
-    text: "Mentorship program paired me with someone who reviews my code and explains best practices.",
+    text: "Mentorship program paired me",
     icon: <MessageCircle className="w-4 h-4" />,
   },
   {
     source: "Instagram",
     handle: "@techstudent",
-    text: "Participated in two hackathons this semester. Good way to meet people and practice under time pressure.",
+    text: "Participated in two hackathons",
     icon: <Instagram className="w-4 h-4" />,
   },
   {
     source: "Twitter",
     handle: "@mongoliaTech",
-    text: "Working on an open-source project with other members. Learning Git workflow and code review.",
+    text: "Working on an open-source",
     icon: <Twitter className="w-4 h-4" />,
   },
   {
     source: "LinkedIn",
     handle: "Alumni (2023)",
-    text: "The projects I worked on here gave me something to talk about in interviews.",
+    text: "The projects I worked on",
     icon: <Linkedin className="w-4 h-4" />,
   },
 ];

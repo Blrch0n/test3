@@ -76,7 +76,7 @@ export default function BootLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, filter: "blur(8px)" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-9999 bg-[#07080b] flex items-center justify-center"
+          className="fixed inset-0 z-9999 bg-[var(--bg-base)] flex items-center justify-center"
           style={{ pointerEvents: "none" }}
         >
           {}
@@ -141,13 +141,13 @@ export default function BootLoader() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-white/90 font-mono text-xs md:text-sm tracking-[0.3em] mb-4"
+              className="text-[var(--text-primary)] font-mono text-xs md:text-sm tracking-[0.3em] mb-4"
             >
               SYS&COTECH
             </motion.div>
 
             <div className="w-72 md:w-96 mx-auto space-y-3">
-              <div className="relative h-0.5 bg-white/10 overflow-hidden">
+              <div className="relative h-0.5 bg-[var(--border-line)] overflow-hidden">
                 <motion.div
                   className="absolute inset-y-0 left-0 bg-linear-to-r from-[#00D4FF] via-[#5B5FFF] to-[#E94FFF]"
                   initial={{ width: 0 }}
@@ -159,7 +159,7 @@ export default function BootLoader() {
                 />
                 {!prefersReducedMotion && progress < 100 && (
                   <motion.div
-                    className="absolute inset-y-0 w-16 bg-linear-to-r from-transparent via-white/40 to-transparent"
+                    className="absolute inset-y-0 w-16 bg-linear-to-r from-transparent via-[var(--text-primary)]/40 to-transparent"
                     style={{ left: `${Math.max(0, progress - 15)}%` }}
                     animate={{
                       opacity: [0.5, 1, 0.5],
@@ -173,7 +173,7 @@ export default function BootLoader() {
                 )}
               </div>
 
-              <div className="flex items-center justify-between text-xs font-mono text-white/50">
+              <div className="flex items-center justify-between text-xs font-mono text-[var(--text-muted)]">
                 <motion.span
                   key={statusText}
                   initial={{ opacity: 0, x: -10 }}
@@ -201,7 +201,7 @@ export default function BootLoader() {
                       className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
                         system.ready
                           ? "bg-[#00D4FF] shadow-[0_0_8px_rgba(0,212,255,0.6)]"
-                          : "bg-white/20"
+                          : "bg-[var(--border-line)]"
                       }`}
                       style={{
                         animation:
@@ -210,7 +210,7 @@ export default function BootLoader() {
                             : "none",
                       }}
                     />
-                    <span className="text-[10px] font-mono text-white/40 tracking-wider">
+                    <span className="text-[10px] font-mono text-[var(--text-mono)] tracking-wider">
                       {system.label}
                     </span>
                   </motion.div>

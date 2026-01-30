@@ -90,7 +90,7 @@ export default function FAQ() {
           subtitle={t("faq.subtitle")}
         />
 
-        <div className="mt-16 rounded-2xl bg-white/4 border border-white/8 p-6 md:p-8">
+        <div className="mt-16 rounded-2xl bg-[var(--bg-surface)] border border-[var(--border-line)] p-6 md:p-8">
           {faqData.map((item, index) => (
             <FAQItem
               key={index}
@@ -128,15 +128,15 @@ export function SectionHeader({
       className="text-center max-w-3xl mx-auto mb-20"
     >
       {eyebrow && (
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md border border-white/10 bg-white/2 text-[11px] font-mono uppercase tracking-[0.2em] text-white/50 mb-6 backdrop-blur-sm">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-md border border-[var(--border-line)] bg-[var(--bg-surface)] text-[11px] font-mono uppercase tracking-[0.2em] text-[var(--text-muted)] mb-6 backdrop-blur-sm">
           <div className="w-1 h-1 rounded-full bg-(--accent-blue)" />
           {eyebrow}
         </div>
       )}
-      <h2 className="text-3xl md:text-5xl font-bold mb-5 tracking-tight">
+      <h2 className="text-3xl md:text-5xl font-bold mb-5 tracking-tight text-[var(--text-primary)]">
         {title}
       </h2>
-      <p className="text-base md:text-lg text-white/55 leading-relaxed">
+      <p className="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed">
         {subtitle}
       </p>
     </motion.div>

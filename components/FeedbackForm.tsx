@@ -84,22 +84,22 @@ export default function FeedbackForm() {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="space-y-6"
     >
-      <h4 className="text-lg font-semibold text-white/90">Send Feedback</h4>
+      <h4 className="text-lg font-semibold text-[var(--text-primary)]">Send Feedback</h4>
       <form onSubmit={handleSubmit} className="space-y-4">
         
         <div>
           <label
             htmlFor="name"
-            className="hud-label block text-xs font-medium text-white/60 mb-2"
+            className="hud-label block text-xs font-medium text-[var(--text-secondary)] mb-2"
           >
-            Name <span className="text-white/40">(optional)</span>
+            Name <span className="text-[var(--text-muted)]">(optional)</span>
           </label>
           <input
             type="text"
             id="name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full px-4 py-2.5 rounded-xl bg-white/2 border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40 transition-all"
+            className="w-full px-4 py-2.5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40 transition-all"
             placeholder="Your name"
           />
         </div>
@@ -108,7 +108,7 @@ export default function FeedbackForm() {
         <div>
           <label
             htmlFor="email"
-            className="hud-label block text-xs font-medium text-white/60 mb-2"
+            className="hud-label block text-xs font-medium text-[var(--text-secondary)] mb-2"
           >
             Reply-to Email <span className="text-red-400">*</span>
           </label>
@@ -120,11 +120,11 @@ export default function FeedbackForm() {
               setFormData({ ...formData, email: e.target.value });
               if (errors.email) setErrors({ ...errors, email: "" });
             }}
-            className={`w-full px-4 py-2.5 rounded-xl bg-white/2 border ${
+            className={`w-full px-4 py-2.5 rounded-xl bg-[var(--bg-surface)] border ${
               errors.email
                 ? "border-red-400/60 focus:ring-red-400/40"
-                : "border-white/10 focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40"
-            } text-white placeholder:text-white/30 focus:outline-none focus:ring-2 transition-all`}
+                : "border-[var(--border-line)] focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40"
+            } text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 transition-all`}
             placeholder="your.email@example.com"
             required
           />
@@ -137,7 +137,7 @@ export default function FeedbackForm() {
         <div>
           <label
             htmlFor="subject"
-            className="hud-label block text-xs font-medium text-white/60 mb-2"
+            className="hud-label block text-xs font-medium text-[var(--text-secondary)] mb-2"
           >
             Subject <span className="text-red-400">*</span>
           </label>
@@ -149,11 +149,11 @@ export default function FeedbackForm() {
               setFormData({ ...formData, subject: e.target.value });
               if (errors.subject) setErrors({ ...errors, subject: "" });
             }}
-            className={`w-full px-4 py-2.5 rounded-xl bg-white/2 border ${
+            className={`w-full px-4 py-2.5 rounded-xl bg-[var(--bg-surface)] border ${
               errors.subject
                 ? "border-red-400/60 focus:ring-red-400/40"
-                : "border-white/10 focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40"
-            } text-white placeholder:text-white/30 focus:outline-none focus:ring-2 transition-all`}
+                : "border-[var(--border-line)] focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40"
+            } text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 transition-all`}
             placeholder="What's this about?"
             required
           />
@@ -166,7 +166,7 @@ export default function FeedbackForm() {
         <div>
           <label
             htmlFor="message"
-            className="hud-label block text-xs font-medium text-white/60 mb-2"
+            className="hud-label block text-xs font-medium text-[var(--text-secondary)] mb-2"
           >
             Message <span className="text-red-400">*</span>
           </label>
@@ -178,11 +178,11 @@ export default function FeedbackForm() {
               if (errors.message) setErrors({ ...errors, message: "" });
             }}
             rows={4}
-            className={`w-full px-4 py-2.5 rounded-xl bg-white/2 border ${
+            className={`w-full px-4 py-2.5 rounded-xl bg-[var(--bg-surface)] border ${
               errors.message
                 ? "border-red-400/60 focus:ring-red-400/40"
-                : "border-white/10 focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40"
-            } text-white placeholder:text-white/30 focus:outline-none focus:ring-2 transition-all resize-none`}
+                : "border-[var(--border-line)] focus:ring-[var(--accent-blue)]/40 focus:border-[var(--accent-blue)]/40"
+            } text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:ring-2 transition-all resize-none`}
             placeholder="Tell us what you think..."
             required
           />
@@ -195,7 +195,7 @@ export default function FeedbackForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-white/10 bg-white/2 text-white font-medium text-sm hover:border-[var(--accent-blue)]/40 hover:bg-white/4 hover:shadow-[0_0_20px_var(--panel-glow)] transition-all duration-200 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
+          className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-xl border border-[var(--border-line)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-medium text-sm hover:border-[var(--accent-blue)]/40 hover:bg-[var(--bg-surface-hover)] hover:shadow-[0_0_20px_var(--panel-glow)] transition-all duration-200 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
         >
           <span className="relative z-10 flex items-center gap-2">
             <Send size={16} />

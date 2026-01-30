@@ -4,6 +4,7 @@ export interface SiteNavItem {
   path: string;
   shortLabel: string;
   index?: string;
+  showInDesktop?: boolean; // New flag to control desktop visibility
 }
 
 export const NAV_ITEMS: SiteNavItem[] = [
@@ -19,6 +20,7 @@ export const NAV_ITEMS: SiteNavItem[] = [
     path: "/about",
     shortLabel: "ABOUT",
     index: "01",
+    showInDesktop: true,
   },
   {
     id: "core",
@@ -26,6 +28,7 @@ export const NAV_ITEMS: SiteNavItem[] = [
     path: "/pillars",
     shortLabel: "CORE",
     index: "02",
+    showInDesktop: true,
   },
   {
     id: "training",
@@ -33,6 +36,7 @@ export const NAV_ITEMS: SiteNavItem[] = [
     path: "/programs",
     shortLabel: "TRAINING",
     index: "03",
+    showInDesktop: true,
   },
   {
     id: "showcase",
@@ -40,6 +44,7 @@ export const NAV_ITEMS: SiteNavItem[] = [
     path: "/projects",
     shortLabel: "SHOWCASE",
     index: "04",
+    showInDesktop: true,
   },
   {
     id: "events",
@@ -47,6 +52,7 @@ export const NAV_ITEMS: SiteNavItem[] = [
     path: "/events",
     shortLabel: "EVENTS",
     index: "05",
+    showInDesktop: true,
   },
   {
     id: "faq",
@@ -54,6 +60,7 @@ export const NAV_ITEMS: SiteNavItem[] = [
     path: "/faq",
     shortLabel: "FAQ",
     index: "06",
+    showInDesktop: false, // Hide from desktop nav
   },
   {
     id: "contact",
@@ -61,6 +68,7 @@ export const NAV_ITEMS: SiteNavItem[] = [
     path: "/contact",
     shortLabel: "CONTACT",
     index: "07",
+    showInDesktop: false, // Hide from desktop nav
   },
 ];
 

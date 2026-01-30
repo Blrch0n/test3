@@ -48,7 +48,7 @@ export default function Hero() {
           >
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md border border-white/10 bg-white/2 text-[11px] font-mono uppercase tracking-wider text-white/60 backdrop-blur-sm"
+              className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-md border border-[var(--border-line)] bg-[var(--bg-surface)] text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] backdrop-blur-sm"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-(--accent-blue) animate-pulse shadow-[0_0_8px_rgba(91,95,255,0.8)]" />
               <span>{t("hero.badge")}</span>
@@ -65,7 +65,7 @@ export default function Hero() {
 
             <motion.p
               variants={itemVariants}
-              className="text-base md:text-lg text-white/60 leading-relaxed max-w-lg"
+              className="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed max-w-lg"
             >
               {t("hero.description")}
             </motion.p>
@@ -76,14 +76,14 @@ export default function Hero() {
             >
               <button
                 onClick={openModal}
-                className="group inline-flex items-center justify-center px-7 py-3.5 rounded-lg border border-white/10 bg-linear-to-r from-(--accent-cyan)/10 via-(--accent-blue)/10 to-(--accent-violet)/10 text-white font-semibold text-sm hover:border-(--accent-blue)/40 hover:shadow-[0_0_24px_var(--panel-glow)] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden"
+                className="group inline-flex items-center justify-center px-7 py-3.5 rounded-lg border border-[var(--border-line)] bg-linear-to-r from-(--accent-cyan)/10 via-(--accent-blue)/10 to-(--accent-violet)/10 text-[var(--text-primary)] font-semibold text-sm hover:border-(--accent-blue)/40 hover:shadow-[0_0_24px_var(--panel-glow)] hover:-translate-y-0.5 transition-all duration-300 relative overflow-hidden"
               >
                 <span className="relative z-10">{t("hero.cta.primary")}</span>
                 <div className="absolute inset-0 bg-linear-to-r from-(--accent-cyan)/20 via-(--accent-blue)/20 to-(--accent-violet)/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </button>
               <a
                 href="#programs"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg border border-white/10 bg-white/2 text-white font-semibold text-sm hover:border-white/20 hover:bg-white/4 hover:-translate-y-0.5 transition-all duration-300"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-lg border border-[var(--border-line)] bg-[var(--bg-surface)] text-[var(--text-primary)] font-semibold text-sm hover:border-[var(--border-line-hover)] hover:bg-[var(--bg-surface-hover)] hover:-translate-y-0.5 transition-all duration-300"
               >
                 <span>{t("hero.cta.secondary")}</span>
               </a>
@@ -94,7 +94,7 @@ export default function Hero() {
               className="flex items-center gap-3 pt-2"
             >
               <div className="w-12 h-px bg-linear-to-r from-transparent via-(--accent-blue)/50 to-transparent" />
-              <div className="text-[10px] text-white/30 font-mono uppercase tracking-[0.2em]">
+              <div className="text-[10px] text-[var(--text-mono)] font-mono uppercase tracking-[0.2em]">
                 {t("common.scrollExplore")}
               </div>
             </motion.div>
@@ -112,7 +112,7 @@ export default function Hero() {
               <div className="absolute bottom-0 right-0 w-16 h-px bg-linear-to-l from-(--accent-blue)/40 to-transparent" />
               <div className="absolute bottom-0 right-0 w-px h-16 bg-linear-to-t from-(--accent-blue)/40 to-transparent" />
 
-              <div className="relative rounded-2xl glass-panel overflow-hidden h-full border border-white/8">
+              <div className="relative rounded-2xl glass-panel overflow-hidden h-full border border-[var(--border-line)]">
                 <div className="w-full h-full flex items-center justify-center p-8">
                   <motion.div
                     animate={{
@@ -145,10 +145,10 @@ export default function Hero() {
                   <div className="flex items-start gap-2.5">
                     <div className="shrink-0 w-1.5 h-1.5 rounded-full bg-(--accent-cyan) mt-1.5 animate-pulse shadow-[0_0_8px_rgba(0,212,255,0.8)]" />
                     <div>
-                      <div className="text-xs font-semibold text-white mb-0.5">
+                      <div className="text-xs font-semibold text-[var(--text-primary)] mb-0.5">
                         {t("hero.image.title")}
                       </div>
-                      <div className="text-[10px] text-white/50">
+                      <div className="text-[10px] text-[var(--text-muted)]">
                         {t("hero.image.subtitle")}
                       </div>
                     </div>
@@ -164,7 +164,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--text-mono)]"
       >
         <span className="text-[10px] font-mono uppercase tracking-[0.2em]">
           {t("common.scroll")}

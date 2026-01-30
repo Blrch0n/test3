@@ -35,7 +35,9 @@ export default function Navigation() {
     setIsMobileMenuOpen(false);
   };
 
-  const desktopNavItems = NAV_ITEMS.filter((item) => item.id !== "home");
+  const desktopNavItems = NAV_ITEMS.filter(
+    (item) => item.id !== "home" && item.showInDesktop !== false
+  );
 
   return (
     <>

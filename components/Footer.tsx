@@ -35,7 +35,7 @@ export default function Footer() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 border-t border-white/8">
+    <section id="contact" className="py-24 md:py-32 border-t border-[var(--border-line)]">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <SectionHeader
           eyebrow={t("footer.eyebrow")}
@@ -51,39 +51,39 @@ export default function Footer() {
           className="grid md:grid-cols-3 gap-8 md:gap-12 mt-16"
         >
           <motion.div variants={itemVariants} className="space-y-6">
-            <h4 className="text-lg font-semibold text-white/90">
+            <h4 className="text-lg font-semibold text-[var(--text-primary)]">
               {t("footer.contact.title")}
             </h4>
             <div className="space-y-4">
               <a
                 href="tel:+97694945798"
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
+                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group"
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-line)] group-hover:bg-[var(--bg-surface-hover)] transition-colors">
                   <Phone size={18} />
                 </div>
                 <span>+976 9494 5798</span>
               </a>
               <a
                 href="tel:+97694351314"
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
+                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group"
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-line)] group-hover:bg-[var(--bg-surface-hover)] transition-colors">
                   <Phone size={18} />
                 </div>
                 <span>+976 9435 1314</span>
               </a>
               <a
                 href="mailto:contact@syscotech.club"
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-colors group"
+                className="flex items-center gap-3 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors group"
               >
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors">
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-line)] group-hover:bg-[var(--bg-surface-hover)] transition-colors">
                   <Mail size={18} />
                 </div>
                 <span className="break-all">contact@syscotech.club</span>
               </a>
-              <div className="flex items-start gap-3 text-white/70">
-                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/5 border border-white/10">
+              <div className="flex items-start gap-3 text-[var(--text-secondary)]">
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-line)]">
                   <MapPin size={18} />
                 </div>
                 <span>SHUTIS-MHTS Room 400</span>
@@ -95,7 +95,7 @@ export default function Footer() {
                 href="https://www.facebook.com/SysAndCoTech/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:-translate-y-1 hover:border-(--accent-cyan) transition-all"
+                className="flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] hover:-translate-y-1 hover:border-(--accent-cyan) transition-all"
                 aria-label="Facebook"
               >
                 <Facebook size={20} />
@@ -104,7 +104,7 @@ export default function Footer() {
                 href="https://goo.gl/maps/Qwv3RYvybs8YqJsS8"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 hover:-translate-y-1 hover:border-(--accent-cyan) transition-all"
+                className="flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-line)] text-[var(--text-primary)] hover:bg-[var(--bg-surface-hover)] hover:-translate-y-1 hover:border-(--accent-cyan) transition-all"
                 aria-label="Location"
               >
                 <MapPin size={20} />
@@ -113,7 +113,7 @@ export default function Footer() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-6">
-            <h4 className="text-lg font-semibold text-white/90">
+            <h4 className="text-lg font-semibold text-[var(--text-primary)]">
               {t("footer.quicklinks.title")}
             </h4>
             <ul className="space-y-3">
@@ -126,7 +126,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all"
+                    className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:translate-x-1 inline-block transition-all"
                   >
                     {link.label}
                   </a>
@@ -136,14 +136,14 @@ export default function Footer() {
           </motion.div>
 
           <motion.div variants={itemVariants} className="space-y-6">
-            <h4 className="text-lg font-semibold text-white/90">
+            <h4 className="text-lg font-semibold text-[var(--text-primary)]">
               {t("footer.policies.title")}
             </h4>
             <ul className="space-y-3">
               <li>
                 <a
                   href="#"
-                  className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all"
+                  className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:translate-x-1 inline-block transition-all"
                 >
                   {t("footer.policies.rights")}
                 </a>
@@ -151,7 +151,7 @@ export default function Footer() {
               <li>
                 <a
                   href="#"
-                  className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all"
+                  className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:translate-x-1 inline-block transition-all"
                 >
                   {t("footer.policies.rules")}
                 </a>
@@ -161,7 +161,7 @@ export default function Footer() {
                   href="https://hackathon.syscotech.club/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-white/70 hover:text-white hover:translate-x-1 inline-block transition-all"
+                  className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:translate-x-1 inline-block transition-all"
                 >
                   {t("footer.policies.hackathon")}
                 </a>
@@ -174,7 +174,7 @@ export default function Footer() {
           variants={itemVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="mt-16 pt-8 border-t border-white/8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50"
+          className="mt-16 pt-8 border-t border-[var(--border-line)] flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[var(--text-muted)]"
         >
           <p>{t("footer.copyright")}</p>
           <p>{t("footer.built")}</p>
